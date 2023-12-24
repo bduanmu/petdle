@@ -1,0 +1,91 @@
+@font-face {
+    font-family: sap;
+    src: url("./assets/LapsusPro-Bold.otf");
+}
+
+@keyframes backgroundScroll {
+    0%   {background-position: 0% 0%;}
+    100%  {background-position: 100% 0%;}
+}
+
+body {
+    background: url("./assets/big_background_blurred.png") no-repeat center center fixed;
+    background-size: cover;
+    animation: backgroundScroll 40s linear infinite;
+}
+
+.gameContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    height: auto;
+    width: 500px;
+}
+
+.guess {
+    display: inline-flex;
+    justify-content: space-between;
+    height: auto;
+    width: 450px;
+}
+
+.guessBox {
+    background-color: #CB5C35;
+    height: 72px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: black;
+    border-radius: 10px;
+}
+
+.guessBox:hover {
+    filter: brightness(120%);
+}
+
+.inputBox {
+    display: flex;
+    background-color: #ED732E;
+    height: 60px;
+    border-radius: 5px;
+}
+
+.input {
+    background-color: rgba(0, 0, 0, 0);
+    height: 60px;
+    width: 260px;
+    border-style: none;
+    margin-left: 5px;
+    font-family: sap;
+    font-size: 40px;
+    color: #5D240B;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.petImage {
+    height: 50px;
+    width: auto;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.enterButton {
+    background-color: rgba(0, 0, 0, 0);
+    height: 60px;
+    width: 72px;
+    border-style: none; 
+}
+
+.enterArrow {
+    height: auto;
+    width: 40px;
+    margin-left: 5px;
+}

@@ -136,11 +136,12 @@ body {
 
 .infoBoxOuter {
     height: 72px;
-    width: 85px;
+    width: 100px;
     border-style: solid;
     border-width: 5px;
     border-color: black;
     border-radius: 10px;
+    background-color: #414141;
 }
 
 .infoBoxInner {

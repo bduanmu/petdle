@@ -3,7 +3,7 @@ import "./styles.css"
 import logo from "./assets/Petdle_Logo.png"
 import turtleSilhouette from "./assets/Turtle_silhouette.png"
 import enterArrow from "./assets/Enter_Arrow.png"
-import { pets, petNames } from "./pets.jsx";
+import { pets, petImages, petNames } from "./pets.jsx";
 
 const correctPetIndex = Math.floor(Math.random() * petNames.length)
 const correctPet = pets[correctPetIndex]
@@ -22,7 +22,7 @@ export default function App() {
   function handleGuess(e) {
     e.preventDefault()
 
-    const petIndex = petNames.indexOf(newGuess)
+    const petIndex = petNames.indexOf(newGuess.toLowerCase())
 
     if (petIndex != -1 && !guessedPets.includes(petIndex)) {
       setGuessedPets(currentGuess => {
@@ -31,6 +31,7 @@ export default function App() {
 
       const hint = {
         "pet": pets[petIndex], 
+        "pet_image": petImages[petIndex],
         "pet_colour": WRONG_COLOUR, 
         "tier": WRONG_COLOUR, 
         "pack": WRONG_COLOUR,
@@ -131,7 +132,8 @@ export default function App() {
                 <div className="infoBox">
                   <div className="infoBoxOuter" style={{backgroundColor: hint.pet_colour[1]}}>
                     <div className="infoBoxInner" style={{fontSize: 20, backgroundColor: hint.pet_colour[0]}}>
-                      <label>{hint.pet.name}</label>
+                      {/* <label>{hint.pet.name}</label> */}
+                      <img className="hintPetImage" src={hint.pet_image} alt={hint.pet.name} title = {hint.pet.name}/>
                     </div>
                   </div>
                 </div>

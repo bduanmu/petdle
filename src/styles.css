@@ -93,3 +93,68 @@ body {
     width: 40px;
     margin-left: 5px;
 }
+
+.guessList {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.guessListObject {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.listLabel {
+    display: flex;
+    height: 80px;
+    width: 116.365px;
+    justify-content: center;
+    align-items: center;
+    background-image: url("./assets/sap_ui_transparent_aligned.png");
+    background-size: 100% auto;
+    margin-left: 2px;
+    margin-right: 2px;
+    font-family: sap;
+    font-size: 30px;
+    color: black;
+}
+
+.infoBox {
+    display: flex;
+    height: 72px;
+    width: 120.365px;
+    justify-content: center;
+    align-items: center;
+}
+
+.infoBoxOuter {
+    height: 72px;
+    width: 85px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: black;
+    border-radius: 10px;
+}
+
+.infoBoxInner {
+    display: flex;
+    height: 60px;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    font-family: sap;
+    color: black;
+    text-align: center;
+}
+
+.abilityLabel {
+    padding: 5px;
+    font-size: 15px;
+}

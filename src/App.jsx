@@ -3,6 +3,11 @@ import "./styles.css"
 import logo from "./assets/Petdle_Logo.png"
 import turtleSilhouette from "./assets/Turtle_silhouette.png"
 import enterArrow from "./assets/Enter_Arrow.png"
+import turtlePackIcon from "./assets/pack_icons/Turtle Pack_Icon.png"
+import goldenPackIcon from "./assets/pack_icons/Golden Pack_Icon.png"
+import puppyPackIcon from "./assets/pack_icons/Puppy Pack_Icon.png"
+import starPackIcon from "./assets/pack_icons/Star Pack_Icon.png"
+import weeklyPackIcon from "./assets/pack_icons/Weekly Pack_Icon.png"
 import { pets, petImages, petNames } from "./pets.jsx";
 
 const correctPetIndex = Math.floor(Math.random() * petNames.length)
@@ -12,6 +17,13 @@ const WRONG_COLOUR = ["#676767", "#414141"]
 const CLOSE_COLOUR = ["#EDB82E", "#CB8F35"]
 const CORRECT_COLOUR = ["#32ED2E", "#2CA02A"]
 const PACK_IMAGE_HEIGHT = [50, 35, 25, 21, 15]
+const PACK_ICONS = {
+  "Turtle Pack": turtlePackIcon, 
+  "Golden Pack": goldenPackIcon, 
+  "Puppy Pack": puppyPackIcon,
+  "Star Pack": starPackIcon,
+  "Weekly Pack": weeklyPackIcon
+}
 
 console.log(petNames[correctPetIndex])
 
@@ -163,7 +175,7 @@ export default function App() {
                           <img
                             key={pack}
                             className="packImage" 
-                            src={"src/assets/" + pack + "_Icon.png"} 
+                            src={PACK_ICONS[pack]}
                             alt={pack} 
                             title={pack}
                             style={{height: PACK_IMAGE_HEIGHT[hint.pet.pack.length - 1]}}

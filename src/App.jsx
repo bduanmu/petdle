@@ -15,7 +15,7 @@ const correctPet = pets[correctPetIndex]
 
 const WRONG_COLOUR = ["#676767", "#414141"]
 const CLOSE_COLOUR = ["#EDB82E", "#CB8F35"]
-const CORRECT_COLOUR = ["#32ED2E", "#2CA02A"]
+const CORRECT_COLOUR = ["#28C223", "#269624"]
 const PACK_IMAGE_HEIGHT = [50, 35, 25, 21, 15]
 const PACK_ICONS = {
   "Turtle Pack": turtlePackIcon, 
@@ -29,6 +29,7 @@ console.log(petNames[correctPetIndex])
 
 export default function App() {
   const [newGuess, setNewGuess] = useState('')
+  const [guessImage, setGuessImage] = useState(turtleSilhouette)
   const [guessedPets, setGuessedPets] = useState([])
   const [hints, setHints] = useState([])
 
@@ -41,6 +42,7 @@ export default function App() {
       setGuessedPets(currentGuess => {
         return [petIndex, ...currentGuess]
       })
+      setGuessImage(turtleSilhouette)
 
       const hint = {
         "pet": pets[petIndex], 
@@ -97,17 +99,49 @@ export default function App() {
       <div className="gameContainer">
         <img className="logo" src={logo} alt="Logo"/>
         <form className="guess" onSubmit={handleGuess}>
-          <div className="guessBox" style={{width: 345}}>
+          <div className="guessBox" style={{width: 545}}>
             <div className="inputBox">
-              <img className="petImage" src={turtleSilhouette} alt="Turtle Silhouette"/>
+              <div className="petImageBox">
+                <img className="petImage" src={guessImage} alt="Turtle Silhouette" title="Turtle Silhouette"/>
+              </div>
               <input 
                 className="input"
                 type="text"
                 required
                 value={newGuess}
                 placeholder={"Enter a pet"}
-                onChange={e => setNewGuess(e.target.value)}
+                onChange={e => {
+                  const input = e.target.value
+                  setNewGuess(input)
+                  if (petNames.includes(input.toLowerCase())) {
+                    setGuessImage(petImages[petNames.indexOf(input.toLowerCase())])
+                  } else {
+                    setGuessImage(turtleSilhouette)
+                  }
+                }}
               />
+            </div>
+            <div style={{marginTop: 15}}>
+              {pets.filter((_pet, index) => {
+                const searchTerm = newGuess.toLowerCase();
+                const petName = petNames[index];
+
+                return petName.includes(searchTerm) && searchTerm && !petNames.includes(searchTerm)
+              })
+              .slice(0, 10)
+              .map((pet, index) => {
+                return (
+                  <div
+                    key={index}
+                    onClick={() => {
+                      setNewGuess(pet.name)
+                      setGuessImage(petImages[petNames.indexOf(pet.name.toLowerCase())])
+                    }}
+                  >
+                    {pet.name}
+                  </div>
+                )
+              })}
             </div>
           </div>
           <div className="guessBox" style={{width: 72}}>
@@ -139,9 +173,9 @@ export default function App() {
               <label>Ability</label>
             </div>
           </li>
-          {hints.map(hint => {
+          {hints.map((hint, index) => {
             return (
-              <li key={hint.pet.name} className="guessListObject">
+              <li key={index} className="guessListObject">
                 <div className="infoBox">
                   <div className="infoBoxOuter" style={{backgroundColor: hint.pet_colour[1]}}>
                     <div className="infoBoxInner" style={{fontSize: 20, backgroundColor: hint.pet_colour[0]}}>

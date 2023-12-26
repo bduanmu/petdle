@@ -163,5 +163,9 @@ body {
 .hintPetImage {
     height: 50px;
     width: auto;
-    margin-left: 5px;
+}
+
+.packImage {
+    height: auto;
+    width: auto;
 }

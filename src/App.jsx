@@ -11,6 +11,7 @@ const correctPet = pets[correctPetIndex]
 const WRONG_COLOUR = ["#676767", "#414141"]
 const CLOSE_COLOUR = ["#EDB82E", "#CB8F35"]
 const CORRECT_COLOUR = ["#32ED2E", "#2CA02A"]
+const PACK_IMAGE_HEIGHT = [50, 35, 25, 21, 15]
 
 console.log(petNames[correctPetIndex])
 
@@ -132,8 +133,12 @@ export default function App() {
                 <div className="infoBox">
                   <div className="infoBoxOuter" style={{backgroundColor: hint.pet_colour[1]}}>
                     <div className="infoBoxInner" style={{fontSize: 20, backgroundColor: hint.pet_colour[0]}}>
-                      {/* <label>{hint.pet.name}</label> */}
-                      <img className="hintPetImage" src={hint.pet_image} alt={hint.pet.name} title = {hint.pet.name}/>
+                      <img
+                        className="hintPetImage" 
+                        src={hint.pet_image} 
+                        alt={hint.pet.name} 
+                        title={hint.pet.name}
+                      />
                     </div>
                   </div>
                 </div>
@@ -146,8 +151,25 @@ export default function App() {
                 </div>
                 <div className="infoBox">
                   <div className="infoBoxOuter" style={{backgroundColor: hint.pack[1]}}>
-                    <div className="infoBoxInner" style={{fontSize: 20, backgroundColor: hint.pack[0]}}>
-                      <label>{hint.pet.pack.join(', ')}</label>
+                      <div 
+                        className="infoBoxInner" 
+                        style={{
+                          fontSize: 20, 
+                          backgroundColor: hint.pack[0],
+                        }}
+                      >
+                      {hint.pet.pack.map(pack => {
+                        return (
+                          <img
+                            key={pack}
+                            className="packImage" 
+                            src={"src/assets/pack_icons/" + pack + "_Icon.png"} 
+                            alt={pack} 
+                            title={pack}
+                            style={{height: PACK_IMAGE_HEIGHT[hint.pet.pack.length - 1]}}
+                          />
+                        )
+                      })}
                     </div>
                   </div>
                 </div>

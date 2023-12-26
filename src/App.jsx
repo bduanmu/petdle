@@ -151,19 +151,19 @@ export default function App() {
                 </div>
                 <div className="infoBox">
                   <div className="infoBoxOuter" style={{backgroundColor: hint.pack[1]}}>
-                      <div 
-                        className="infoBoxInner" 
-                        style={{
-                          fontSize: 20, 
-                          backgroundColor: hint.pack[0],
-                        }}
-                      >
+                    <div 
+                      className="infoBoxInner" 
+                      style={{
+                        fontSize: 20, 
+                        backgroundColor: hint.pack[0],
+                      }}
+                    >
                       {hint.pet.pack.map(pack => {
                         return (
                           <img
                             key={pack}
                             className="packImage" 
-                            src={"src/assets/pack_icons/" + pack + "_Icon.png"} 
+                            src={"src/assets/" + pack + "_Icon.png"} 
                             alt={pack} 
                             title={pack}
                             style={{height: PACK_IMAGE_HEIGHT[hint.pet.pack.length - 1]}}

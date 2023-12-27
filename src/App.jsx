@@ -32,6 +32,7 @@ export default function App() {
   const [guessImage, setGuessImage] = useState(turtleSilhouette)
   const [guessedPets, setGuessedPets] = useState([])
   const [hints, setHints] = useState([])
+  const [showSuggestions, setShowSuggestions] = useState(false)
 
   function handleGuess(e) {
     e.preventDefault()
@@ -99,52 +100,71 @@ export default function App() {
       <div className="gameContainer">
         <img className="logo" src={logo} alt="Logo"/>
         <form className="guess" onSubmit={handleGuess}>
-          <div className="guessBox" style={{width: 545}}>
-            <div className="inputBox">
-              <div className="petImageBox">
-                <img className="petImage" src={guessImage} alt="Turtle Silhouette" title="Turtle Silhouette"/>
+          <div>
+            <div className="guessBox">
+              <div className="inputBox">
+                <div className="petImageBox">
+                  <img className="petImage" src={guessImage} alt="Turtle Silhouette" title="Turtle Silhouette"/>
+                </div>
+                <input 
+                  className="input"
+                  type="text"
+                  required
+                  value={newGuess}
+                  placeholder={"Enter a pet"}
+                  onChange={e => {
+                    const input = e.target.value
+                    setNewGuess(input)
+                    if (petNames.includes(input.toLowerCase())) {
+                      setGuessImage(petImages[petNames.indexOf(input.toLowerCase())])
+                      setShowSuggestions(false)
+                    } else {
+                      setGuessImage(turtleSilhouette)
+                      setShowSuggestions(true)
+                    }
+                    if (!input || !pets.some((_pet, index) => petNames[index].includes(input.toLowerCase()))) {
+                      setShowSuggestions(false)
+                    }
+                  }}
+                  onFocus={e => {
+                    const input = e.target.value
+                    if (input && !petNames.includes(input.toLowerCase())) {
+                      setShowSuggestions(true)
+                    }
+                  }}
+                  onBlur={() => {
+                    setShowSuggestions(false)
+                  }}
+                />
               </div>
-              <input 
-                className="input"
-                type="text"
-                required
-                value={newGuess}
-                placeholder={"Enter a pet"}
-                onChange={e => {
-                  const input = e.target.value
-                  setNewGuess(input)
-                  if (petNames.includes(input.toLowerCase())) {
-                    setGuessImage(petImages[petNames.indexOf(input.toLowerCase())])
-                  } else {
-                    setGuessImage(turtleSilhouette)
-                  }
-                }}
-              />
             </div>
-            <div style={{marginTop: 15}}>
+            {showSuggestions ? <div className="suggestions">
               {pets.filter((_pet, index) => {
                 const searchTerm = newGuess.toLowerCase();
                 const petName = petNames[index];
 
-                return petName.includes(searchTerm) && searchTerm && !petNames.includes(searchTerm)
+                return petName.includes(searchTerm)
               })
-              .slice(0, 10)
               .map((pet, index) => {
                 return (
                   <div
+                    className="suggestionBox"
                     key={index}
-                    onClick={() => {
+                    onPointerDown={() => {
                       setNewGuess(pet.name)
                       setGuessImage(petImages[petNames.indexOf(pet.name.toLowerCase())])
                     }}
                   >
+                    <div className="petImageBox" style={{width: 50, height: 45}}>
+                      <img className="petImage" src={petImages[petNames.indexOf(pet.name.toLowerCase())]} style={{maxWidth: 40, maxHeight: 40}}/>
+                    </div>
                     {pet.name}
                   </div>
                 )
               })}
-            </div>
+            </div> : null}
           </div>
-          <div className="guessBox" style={{width: 72}}>
+          <div className="enterBox" style={{width: 72}}>
             <div className="inputBox">
               <button className="enterButton">
                 <img className="enterArrow" src={enterArrow} alt="Enter Arrow"/>
@@ -152,99 +172,99 @@ export default function App() {
             </div>
           </div>
         </form>
-        <ul className="guessList">
-          <li className="guessListObject" style={{marginBottom: 10}}>
-            <div className="listLabel">
-              <label>Pet</label>
-            </div>
-            <div className="listLabel">
-              <label>Tier</label>
-            </div>
-            <div className="listLabel">
-              <label>Pack</label>
-            </div>
-            <div className="listLabel">
-              <label>Attack</label>
-            </div>
-            <div className="listLabel">
-              <label>Health</label>
-            </div>
-            <div className="listLabel">
-              <label>Ability</label>
-            </div>
-          </li>
-          {hints.map((hint, index) => {
-            return (
-              <li key={index} className="guessListObject">
-                <div className="infoBox">
-                  <div className="infoBoxOuter" style={{backgroundColor: hint.pet_colour[1]}}>
-                    <div className="infoBoxInner" style={{fontSize: 20, backgroundColor: hint.pet_colour[0]}}>
-                      <img
-                        className="hintPetImage" 
-                        src={hint.pet_image} 
-                        alt={hint.pet.name} 
-                        title={hint.pet.name}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="infoBox">
-                  <div className="infoBoxOuter" style={{backgroundColor: hint.tier[1]}}>
-                    <div className="infoBoxInner" style={{fontSize: 40, backgroundColor: hint.tier[0]}}>
-                      <label>{hint.pet.tier}</label>
-                    </div>
-                  </div>
-                </div>
-                <div className="infoBox">
-                  <div className="infoBoxOuter" style={{backgroundColor: hint.pack[1]}}>
-                    <div 
-                      className="infoBoxInner" 
-                      style={{
-                        fontSize: 20, 
-                        backgroundColor: hint.pack[0],
-                      }}
-                    >
-                      {hint.pet.pack.map(pack => {
-                        return (
-                          <img
-                            key={pack}
-                            className="packImage" 
-                            src={PACK_ICONS[pack]}
-                            alt={pack} 
-                            title={pack}
-                            style={{height: PACK_IMAGE_HEIGHT[hint.pet.pack.length - 1]}}
-                          />
-                        )
-                      })}
-                    </div>
-                  </div>
-                </div>
-                <div className="infoBox">
-                  <div className="infoBoxOuter" style={{backgroundColor: hint.attack[1]}}>
-                    <div className="infoBoxInner" style={{fontSize: 40, backgroundColor: hint.attack[0]}}>
-                      <label>{hint.pet.attack}</label>
-                    </div>
-                  </div>
-                </div>
-                <div className="infoBox">
-                  <div className="infoBoxOuter" style={{backgroundColor: hint.health[1]}}>
-                    <div className="infoBoxInner" style={{fontSize: 40, backgroundColor: hint.health[0]}}>
-                      <label>{hint.pet.health}</label>
-                    </div>
-                  </div>
-                </div>
-                <div className="infoBox">
-                  <div className="infoBoxOuter" style={{backgroundColor: hint.ability[1]}}>
-                    <div className="infoBoxInner" style={{backgroundColor: hint.ability[0]}}>
-                      <label className="abilityLabel">{hint.pet.ability}</label>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            )
-          })}
-        </ul>
       </div>
+      <ul className="guessList">
+        <li className="guessListObject" style={{marginBottom: 10}}>
+          <div className="listLabel">
+            <label>Pet</label>
+          </div>
+          <div className="listLabel">
+            <label>Tier</label>
+          </div>
+          <div className="listLabel">
+            <label>Pack</label>
+          </div>
+          <div className="listLabel">
+            <label>Attack</label>
+          </div>
+          <div className="listLabel">
+            <label>Health</label>
+          </div>
+          <div className="listLabel">
+            <label>Ability</label>
+          </div>
+        </li>
+        {hints.map((hint, index) => {
+          return (
+            <li key={index} className="guessListObject">
+              <div className="infoBox">
+                <div className="infoBoxOuter" style={{backgroundColor: hint.pet_colour[1]}}>
+                  <div className="infoBoxInner" style={{fontSize: 20, backgroundColor: hint.pet_colour[0]}}>
+                    <img
+                      className="hintPetImage" 
+                      src={hint.pet_image} 
+                      alt={hint.pet.name} 
+                      title={hint.pet.name}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="infoBox">
+                <div className="infoBoxOuter" style={{backgroundColor: hint.tier[1]}}>
+                  <div className="infoBoxInner" style={{fontSize: 40, backgroundColor: hint.tier[0]}}>
+                    <label>{hint.pet.tier}</label>
+                  </div>
+                </div>
+              </div>
+              <div className="infoBox">
+                <div className="infoBoxOuter" style={{backgroundColor: hint.pack[1]}}>
+                  <div 
+                    className="infoBoxInner" 
+                    style={{
+                      fontSize: 20, 
+                      backgroundColor: hint.pack[0],
+                    }}
+                  >
+                    {hint.pet.pack.map(pack => {
+                      return (
+                        <img
+                          key={pack}
+                          className="packImage" 
+                          src={PACK_ICONS[pack]}
+                          alt={pack} 
+                          title={pack}
+                          style={{height: PACK_IMAGE_HEIGHT[hint.pet.pack.length - 1]}}
+                        />
+                      )
+                    })}
+                  </div>
+                </div>
+              </div>
+              <div className="infoBox">
+                <div className="infoBoxOuter" style={{backgroundColor: hint.attack[1]}}>
+                  <div className="infoBoxInner" style={{fontSize: 40, backgroundColor: hint.attack[0]}}>
+                    <label>{hint.pet.attack}</label>
+                  </div>
+                </div>
+              </div>
+              <div className="infoBox">
+                <div className="infoBoxOuter" style={{backgroundColor: hint.health[1]}}>
+                  <div className="infoBoxInner" style={{fontSize: 40, backgroundColor: hint.health[0]}}>
+                    <label>{hint.pet.health}</label>
+                  </div>
+                </div>
+              </div>
+              <div className="infoBox">
+                <div className="infoBoxOuter" style={{backgroundColor: hint.ability[1]}}>
+                  <div className="infoBoxInner" style={{backgroundColor: hint.ability[0]}}>
+                    <label className="abilityLabel">{hint.pet.ability}</label>
+                  </div>
+                </div>
+              </div>
+            </li>
+          )
+        })}
+      </ul>
     </>
   )
 }

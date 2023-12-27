@@ -21,10 +21,9 @@ body {
 .gameContainer {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 332px;
     width: 100%;
     align-items: center;
-    justify-content: center;
 }
 
 .logo {
@@ -42,6 +41,7 @@ body {
 .guessBox {
     background-color: #CB5C35;
     height: 72px;
+    width: 545px;
     border-style: solid;
     border-width: 5px;
     border-color: black;
@@ -56,6 +56,10 @@ body {
     .input {
         filter: brightness(80%);
     }
+}
+
+.enterBox:hover {    
+    filter: brightness(120%);
     .enterArrow {
         filter: brightness(80%);
     }
@@ -73,7 +77,6 @@ body {
     height: 60px;
     width: 460px;
     border-style: none;
-    margin-left: 5px;
     font-family: sap;
     font-size: 40px;
     color: #5D240B;
@@ -85,14 +88,23 @@ body {
 
 .petImageBox {
     display: flex;
-    width: 100px;
+    width: 60px;
     justify-content: center;
     align-items: center;
 }
 
 .petImage {
-    height: 50px;
-    width: auto;
+    max-height: 50px;
+    max-width: 50px;
+}
+
+.enterBox {
+    background-color: #CB5C35;
+    height: 72px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: black;
+    border-radius: 10px;
 }
 
 .enterButton {
@@ -106,6 +118,37 @@ body {
     height: auto;
     width: 40px;
     margin-left: 5px;
+}
+
+.suggestions {
+    background-color: #f7cc8c;
+    max-height: 360px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    z-index: 1;
+    border-style: solid;
+    border-width: 20px;
+    border-image: url(./assets/Wooden_Border2.png);
+    border-image-slice: 35;
+    border-image-repeat: round;
+    border-image-outset: 2px 4px 5px 4px;
+}
+
+.suggestionBox {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    font-family: sap;
+    font-size: 30px;
+    color: black;
+    border-radius: 5px;
+}
+
+.suggestionBox:hover {
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .guessList {

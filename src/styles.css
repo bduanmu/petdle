@@ -21,27 +21,29 @@ body {
 .gameContainer {
     display: flex;
     flex-direction: column;
-    height: 332px;
+    height: 36.5vh;
     width: 100%;
     align-items: center;
 }
 
 .logo {
-    height: auto;
-    width: 500px;
+    height: calc(36.5vh - 82px);
+    width: auto;
 }
 
 .guess {
     display: inline-flex;
     justify-content: space-between;
     height: auto;
-    width: 650px;
+    width: 34vw;
+    min-width: 400px;
+    --guess-width: calc(max(34vw, 400px));
 }
 
 .guessBox {
     background-color: #CB5C35;
     height: 72px;
-    width: 545px;
+    width: calc(var(--guess-width) - 100px);
     border-style: solid;
     border-width: 5px;
     border-color: black;
@@ -58,13 +60,6 @@ body {
     }
 }
 
-.enterBox:hover {    
-    filter: brightness(120%);
-    .enterArrow {
-        filter: brightness(80%);
-    }
-}
-
 .inputBox {
     display: flex;
     background-color: #ED732E;
@@ -75,7 +70,7 @@ body {
 .input {
     background-color: rgba(0, 0, 0, 0);
     height: 60px;
-    width: 460px;
+    width: calc(var(--guess-width) - 100px - 70px);
     border-style: none;
     font-family: sap;
     font-size: 40px;
@@ -88,7 +83,7 @@ body {
 
 .petImageBox {
     display: flex;
-    width: 60px;
+    min-width: 60px;
     justify-content: center;
     align-items: center;
 }
@@ -107,6 +102,13 @@ body {
     border-radius: 10px;
 }
 
+.enterBox:hover {    
+    filter: brightness(120%);
+    .enterArrow {
+        filter: brightness(80%);
+    }
+}
+
 .enterButton {
     background-color: rgba(0, 0, 0, 0);
     height: 60px;
@@ -122,7 +124,7 @@ body {
 
 .suggestions {
     background-color: #f7cc8c;
-    max-height: 360px;
+    max-height: 39.5vh;
     overflow-y: auto;
     overflow-x: hidden;
     position: relative;
@@ -170,8 +172,9 @@ body {
 
 .listLabel {
     display: flex;
-    height: 80px;
-    width: 116.365px;
+    height: calc(min(120px, 15vw) * 16000/23273);
+    width: 15vw;
+    max-width: 120px;
     justify-content: center;
     align-items: center;
     background-image: url("./assets/sap_ui_transparent_aligned.png");
@@ -179,21 +182,23 @@ body {
     margin-left: 2px;
     margin-right: 2px;
     font-family: sap;
-    font-size: 30px;
+    font-size: calc(min(120px, 15vw) / 4);
     color: black;
 }
 
 .infoBox {
     display: flex;
     height: 72px;
-    width: 120.365px;
+    width: calc(15vw + 4px);
+    max-width: 124px;
     justify-content: center;
     align-items: center;
 }
 
 .infoBoxOuter {
     height: 72px;
-    width: 100px;
+    width: calc(15vw - 20px);
+    max-width: 100px;
     border-style: solid;
     border-width: 5px;
     border-color: black;
@@ -218,8 +223,9 @@ body {
 }
 
 .hintPetImage {
-    height: 50px;
+    max-height: 50px;
     width: auto;
+    max-width: calc(min(15vw - 20px, 100px));
 }
 
 .packImage {

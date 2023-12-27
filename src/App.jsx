@@ -233,7 +233,9 @@ export default function App() {
                           src={PACK_ICONS[pack]}
                           alt={pack} 
                           title={pack}
-                          style={{height: PACK_IMAGE_HEIGHT[hint.pet.pack.length - 1]}}
+                          style={{
+                            height: PACK_IMAGE_HEIGHT[hint.pet.pack.length - 1]
+                          }}
                         />
                       )
                     })}

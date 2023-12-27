@@ -62,6 +62,7 @@ body {
 
 .inputBox {
     display: flex;
+    align-items: center;
     background-color: #ED732E;
     height: 60px;
     border-radius: 5px;

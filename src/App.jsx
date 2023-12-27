@@ -122,18 +122,18 @@ export default function App() {
                       setGuessImage(turtleSilhouette)
                       setShowSuggestions(true)
                     }
-                    if (!input || !pets.some((_pet, index) => petNames[index].includes(input.toLowerCase()))) {
+                    if (!pets.some((_pet, index) => petNames[index].includes(input.toLowerCase()))) {
                       setShowSuggestions(false)
                     }
                   }}
                   onFocus={e => {
                     const input = e.target.value
-                    if (input && !petNames.includes(input.toLowerCase())) {
+                    if (!petNames.includes(input.toLowerCase())) {
                       setShowSuggestions(true)
                     }
                   }}
                   onBlur={() => {
-                    setShowSuggestions(false)
+                    setTimeout(() => {setShowSuggestions(false)}, 100)
                   }}
                 />
               </div>

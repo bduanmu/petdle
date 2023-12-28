@@ -36,8 +36,8 @@ body {
     justify-content: space-between;
     height: auto;
     width: 34vw;
-    min-width: 400px;
-    --guess-width: calc(max(34vw, 400px));
+    min-width: 300px;
+    --guess-width: calc(max(34vw, 300px));
 }
 
 .guessBox {

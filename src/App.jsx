@@ -135,7 +135,7 @@ export default function App() {
                   onBlur={() => {
                     setTimeout(() => {
                       setShowSuggestions(false)
-                    }, 1000)
+                    }, 0)
                   }}
                 />
               </div>
@@ -156,6 +156,7 @@ export default function App() {
                       setNewGuess(pet.name)
                       setGuessImage(petImages[petNames.indexOf(pet.name.toLowerCase())])
                     }}
+                    onMouseDown={e => e.preventDefault()}
                   >
                     <div className="petImageBox" style={{width: 50, height: 45}}>
                       <img className="petImage" src={petImages[petNames.indexOf(pet.name.toLowerCase())]} style={{maxWidth: 40, maxHeight: 40}}/>

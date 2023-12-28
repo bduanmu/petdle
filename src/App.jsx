@@ -33,7 +33,6 @@ export default function App() {
   const [guessedPets, setGuessedPets] = useState([])
   const [hints, setHints] = useState([])
   const [showSuggestions, setShowSuggestions] = useState(false)
-  const [suggestionHover, setSuggestionHover] = useState(false)
 
   function handleGuess(e) {
     e.preventDefault()
@@ -135,7 +134,7 @@ export default function App() {
                   }}
                   onBlur={() => {
                     // setTimeout(() => {
-                      if (!suggestionHover) {setShowSuggestions(false)}
+                      setShowSuggestions(false)
                     // }, 100)
                   }}
                 />
@@ -156,9 +155,6 @@ export default function App() {
                     onClick={() => {
                       setNewGuess(pet.name)
                       setGuessImage(petImages[petNames.indexOf(pet.name.toLowerCase())])
-                    }}
-                    onMouseEnter={() => {
-                      setSuggestionHover(true)
                     }}
                   >
                     <div className="petImageBox" style={{width: 50, height: 45}}>

@@ -133,9 +133,9 @@ export default function App() {
                     }
                   }}
                   onBlur={() => {
-                    // setTimeout(() => {
+                    setTimeout(() => {
                       setShowSuggestions(false)
-                    // }, 100)
+                    }, 1000)
                   }}
                 />
               </div>

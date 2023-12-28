@@ -152,11 +152,11 @@ export default function App() {
                   <div
                     className="suggestionBox"
                     key={index}
-                    onClick={() => {
+                    onMouseDown={() => {
                       setNewGuess(pet.name)
                       setGuessImage(petImages[petNames.indexOf(pet.name.toLowerCase())])
                     }}
-                    onMouseDown={e => e.preventDefault()}
+                    // onMouseDown={e => e.preventDefault()}
                   >
                     <div className="petImageBox" style={{width: 50, height: 45}}>
                       <img className="petImage" src={petImages[petNames.indexOf(pet.name.toLowerCase())]} style={{maxWidth: 40, maxHeight: 40}}/>

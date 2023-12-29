@@ -100,7 +100,7 @@ export default function App() {
       <div className="gameContainer">
         <img className="logo" src={logo} alt="Logo"/>
         <form className="guess" onSubmit={handleGuess}>
-          <div>
+          <div className="guessAndSuggestionsBox">
             <div className="guessBox">
               <div className="inputBox">
                 <div className="petImageBox">

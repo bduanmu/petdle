@@ -40,6 +40,13 @@ body {
     --guess-width: calc(max(34vw, 300px));
 }
 
+.guessAndSuggestionsBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .guessBox {
     background-color: #CB5C35;
     height: 72px;
@@ -126,6 +133,7 @@ body {
 .suggestions {
     background-color: #f7cc8c;
     max-height: 39.5vh;
+    width: calc(var(--guess-width) - 100px - 35px);
     overflow-y: auto;
     overflow-x: hidden;
     position: relative;
@@ -194,6 +202,8 @@ body {
     max-width: 124px;
     justify-content: center;
     align-items: center;
+    
+    animation: 0.5s linear flipping;
 }
 
 .infoBoxOuter {

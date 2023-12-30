@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./styles.css"
 import logo from "./assets/Petdle_Logo.png"
 import turtleSilhouette from "./assets/Turtle_silhouette.png"
@@ -33,6 +33,8 @@ export default function App() {
   const [guessedPets, setGuessedPets] = useState([])
   const [hints, setHints] = useState([])
   const [showSuggestions, setShowSuggestions] = useState(false)
+
+  const input = React.useRef(null)
 
   function handleGuess(e) {
     e.preventDefault()
@@ -90,8 +92,6 @@ export default function App() {
 
       setNewGuess("")
     }
-
-    console.log(guessedPets)
   }
 
   return (
@@ -108,6 +108,7 @@ export default function App() {
                 </div>
                 <input 
                   className="input"
+                  ref={input}
                   type="text"
                   required
                   value={newGuess}

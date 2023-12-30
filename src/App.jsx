@@ -41,7 +41,7 @@ export default function App() {
 
     if (petIndex != -1 && !guessedPets.includes(petIndex)) {
       setGuessedPets(currentGuess => {
-        return [petIndex, ...currentGuess]
+        return [...currentGuess, petIndex]
       })
       setGuessImage(turtleSilhouette)
 
@@ -85,7 +85,7 @@ export default function App() {
       }
 
       setHints(currentHints => {
-        return [hint, ...currentHints]
+        return [...currentHints, hint]
       })
 
       setNewGuess("")
@@ -173,27 +173,27 @@ export default function App() {
           </div>
         </form>
       </div>
+      <li className="listLabels">
+        <div className="listLabel">
+          <label>Pet</label>
+        </div>
+        <div className="listLabel">
+          <label>Tier</label>
+        </div>
+        <div className="listLabel">
+          <label>Pack</label>
+        </div>
+        <div className="listLabel">
+          <label>Attack</label>
+        </div>
+        <div className="listLabel">
+          <label>Health</label>
+        </div>
+        <div className="listLabel">
+          <label>Ability</label>
+        </div>
+      </li>
       <ul className="guessList">
-        <li className="guessListObject" style={{marginBottom: 10}}>
-          <div className="listLabel">
-            <label>Pet</label>
-          </div>
-          <div className="listLabel">
-            <label>Tier</label>
-          </div>
-          <div className="listLabel">
-            <label>Pack</label>
-          </div>
-          <div className="listLabel">
-            <label>Attack</label>
-          </div>
-          <div className="listLabel">
-            <label>Health</label>
-          </div>
-          <div className="listLabel">
-            <label>Ability</label>
-          </div>
-        </li>
         {hints.map((hint, index) => {
           return (
             <li key={index} className="guessListObject">

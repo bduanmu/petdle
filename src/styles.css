@@ -4,8 +4,30 @@
 }
 
 @keyframes backgroundScroll {
-    0%   {background-position: 0;}
-    100%  {background-position: calc(100vh * -1200/984);}
+    0% {
+        background-position: 0;
+    }
+    100% {
+        background-position: calc(100vh * -1200/984);
+    }
+}
+
+@keyframes flip {
+    0% {
+        transform: rotateX(0deg);
+    }
+    25% {
+        transform: rotateX(90deg);
+    }
+    50% {
+        transform: rotateX(0deg);
+    }
+    75% {
+        transform: rotateX(90deg);
+    }
+    100% {
+        transform: rotateX(0deg);
+    }
 }
 
 body {
@@ -21,13 +43,13 @@ body {
 .gameContainer {
     display: flex;
     flex-direction: column;
-    height: 36.5vh;
+    height: 45vh;
     width: 100%;
     align-items: center;
 }
 
 .logo {
-    height: calc(36.5vh - 82px);
+    height: calc(45vh - 82px);
     width: auto;
 }
 
@@ -169,6 +191,8 @@ body {
     justify-content: center;
     align-items: center;
     padding: 0;
+    margin-top: 10px    ;
+    transform: rotate(180deg);
 }
 
 .guessListObject {
@@ -176,7 +200,16 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
+    margin-top: 30px;
+    transform: rotate(-180deg);
+}
+
+.listLabels {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
 }
 
 .listLabel {
@@ -202,8 +235,7 @@ body {
     max-width: 124px;
     justify-content: center;
     align-items: center;
-    
-    animation: 0.5s linear flipping;
+    animation: flip 1s linear;
 }
 
 .infoBoxOuter {

@@ -40,10 +40,12 @@ export default function App() {
   const [showSuggestions, setShowSuggestions] = useState(false)
   const [clipboard, setClipboard] = useState('')
 
-  const input = React.useRef(null)
+  const inputRef = React.useRef(null)
 
   function handleGuess(e) {
     e.preventDefault()
+
+    inputRef.current.focus();
 
     const petIndex = petNames.indexOf(newGuess.toLowerCase())
 
@@ -121,7 +123,7 @@ export default function App() {
                 </div>
                 <input 
                   className="input"
-                  ref={input}
+                  ref={inputRef}
                   type="text"
                   required
                   value={newGuess}
@@ -131,18 +133,18 @@ export default function App() {
                     setNewGuess(input)
                     if (petNames.includes(input.toLowerCase())) {
                       setGuessImage(petImages[petNames.indexOf(input.toLowerCase())])
-                      setShowSuggestions(false)
                     } else {
                       setGuessImage(turtleSilhouette)
-                      setShowSuggestions(true)
                     }
-                    if (!pets.some((_pet, index) => petNames[index].includes(input.toLowerCase()))) {
+                    if (!petNames.includes(input.toLowerCase()) && pets.some((_pet, index) => petNames[index].includes(input.toLowerCase()))) {
+                      setShowSuggestions(true)
+                    } else {
                       setShowSuggestions(false)
                     }
                   }}
                   onFocus={e => {
                     const input = e.target.value
-                    if (!petNames.includes(input.toLowerCase())) {
+                    if (!petNames.includes(input.toLowerCase()) && pets.some((_pet, index) => petNames[index].includes(input.toLowerCase()))) {
                       setShowSuggestions(true)
                     }
                   }}
@@ -167,6 +169,9 @@ export default function App() {
                     onMouseDown={() => {
                       setNewGuess(pet.name)
                       setGuessImage(petImages[petNames.indexOf(pet.name.toLowerCase())])
+                      setTimeout(() => {
+                        inputRef.current.focus();
+                      }, 0)
                     }}
                   >
                     <div className="petImageBox" style={{width: 50, height: 45}}>

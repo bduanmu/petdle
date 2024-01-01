@@ -1,5 +1,8 @@
 import React, { useState, useRef } from "react";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+
 import "./styles.css"
+
 import logo from "./assets/Petdle_Logo.png"
 import turtleSilhouette from "./assets/Turtle_silhouette.png"
 import enterArrow from "./assets/Enter_Arrow.png"
@@ -8,6 +11,7 @@ import goldenPackIcon from "./assets/pack_icons/Golden Pack_Icon.png"
 import puppyPackIcon from "./assets/pack_icons/Puppy Pack_Icon.png"
 import starPackIcon from "./assets/pack_icons/Star Pack_Icon.png"
 import weeklyPackIcon from "./assets/pack_icons/Weekly Pack_Icon.png"
+
 import { pets, petImages, petNames } from "./pets.jsx";
 
 const correctPetIndex = Math.floor(Math.random() * petNames.length)
@@ -16,6 +20,7 @@ const correctPet = pets[correctPetIndex]
 const WRONG_COLOUR = ["#676767", "#414141"]
 const CLOSE_COLOUR = ["#EDB82E", "#CB8F35"]
 const CORRECT_COLOUR = ["#28C223", "#269624"]
+const COLOUR_TO_EMOJI = {"#28C223": '🟩', "#EDB82E": '🟨', "#676767": '⬛'}
 const PACK_IMAGE_HEIGHT = [50, 35, 25, 21, 15]
 const PACK_ICONS = {
   "Turtle Pack": turtlePackIcon, 
@@ -33,6 +38,7 @@ export default function App() {
   const [guessedPets, setGuessedPets] = useState([])
   const [hints, setHints] = useState([])
   const [showSuggestions, setShowSuggestions] = useState(false)
+  const [clipboard, setClipboard] = useState('')
 
   const input = React.useRef(null)
 
@@ -59,7 +65,6 @@ export default function App() {
       }
       
       if (petIndex == correctPetIndex) {
-        console.log("win")
         hint.pet_colour = CORRECT_COLOUR
       }
       if (hint.pet.tier == correctPet.tier) {
@@ -89,7 +94,15 @@ export default function App() {
       setHints(currentHints => {
         return [...currentHints, hint]
       })
-
+      setClipboard(
+        clipboard + '\n' + 
+        COLOUR_TO_EMOJI[hint.tier[0]] + 
+        COLOUR_TO_EMOJI[hint.pack[0]] + 
+        COLOUR_TO_EMOJI[hint.attack[0]] + 
+        COLOUR_TO_EMOJI[hint.health[0]] + 
+        COLOUR_TO_EMOJI[hint.ability[0]]
+      )
+      
       setNewGuess("")
     }
   }
@@ -268,6 +281,9 @@ export default function App() {
           )
         })}
       </ul>
+      <CopyToClipboard text={"I solved today's Petdle in " + guessedPets.length + " tries." + clipboard}>
+        <button>Copy</button>
+      </CopyToClipboard>
     </>
   )
 }

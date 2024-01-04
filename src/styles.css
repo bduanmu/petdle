@@ -12,21 +12,18 @@
     }
 }
 
-@keyframes flip {
+@keyframes showInfoBox {
     0% {
-        transform: rotateX(0deg);
-    }
-    25% {
-        transform: rotateX(90deg);
+        transform: scale(0%);
     }
     50% {
-        transform: rotateX(0deg);
+        transform: scale(105%);
     }
     75% {
-        transform: rotateX(90deg);
+        transform: scale(95%);
     }
     100% {
-        transform: rotateX(0deg);
+        transform: scale(100%);
     }
 }
 
@@ -104,6 +101,7 @@ body {
     border-style: none;
     font-family: sap;
     font-size: 40px;
+    overflow: hidden;
     color: #5D240B;
 }
 
@@ -230,16 +228,16 @@ body {
 
 .infoBox {
     display: flex;
-    height: 72px;
+    height: calc(min(124px, 15vw + 4px) * 18/31);
     width: calc(15vw + 4px);
     max-width: 124px;
     justify-content: center;
     align-items: center;
-    animation: flip 1s linear;
+    animation: showInfoBox 0.5s linear;
 }
 
 .infoBoxOuter {
-    height: 72px;
+    height: calc(min(124px, 15vw + 4px) * 18/31);
     width: calc(15vw - 20px);
     max-width: 100px;
     border-style: solid;
@@ -251,7 +249,7 @@ body {
 
 .infoBoxInner {
     display: flex;
-    height: 60px;
+    height: calc(min(124px, 15vw + 4px) * (18/31) * (5/6));
     border-radius: 5px;
     justify-content: center;
     align-items: center;
@@ -266,12 +264,11 @@ body {
 }
 
 .hintPetImage {
-    max-height: 50px;
-    width: auto;
-    max-width: calc(min(15vw - 20px, 100px));
+    max-height: 90%;
+    max-width: 80%;
 }
 
 .packImage {
-    height: auto;
-    width: auto;
+    max-height: 90%;
+    max-width: 80%;
 }

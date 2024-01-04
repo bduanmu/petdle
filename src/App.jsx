@@ -21,7 +21,7 @@ const WRONG_COLOUR = ["#676767", "#414141"]
 const CLOSE_COLOUR = ["#EDB82E", "#CB8F35"]
 const CORRECT_COLOUR = ["#28C223", "#269624"]
 const COLOUR_TO_EMOJI = {"#28C223": '🟩', "#EDB82E": '🟨', "#676767": '⬛'}
-const PACK_IMAGE_HEIGHT = [50, 35, 25, 21, 15]
+const PACK_IMAGE_HEIGHT = ['90%', '60%', '45%', '35%', '25%']
 const PACK_ICONS = {
   "Turtle Pack": turtlePackIcon, 
   "Golden Pack": goldenPackIcon, 
@@ -192,7 +192,7 @@ export default function App() {
           </div>
         </form>
       </div>
-      <li className="listLabels">
+      {guessedPets.length != 0 ? <li className="listLabels">
         <div className="listLabel">
           <label>Pet</label>
         </div>
@@ -211,7 +211,7 @@ export default function App() {
         <div className="listLabel">
           <label>Ability</label>
         </div>
-      </li>
+      </li> : null}
       <ul className="guessList">
         {hints.map((hint, index) => {
           return (
@@ -281,7 +281,7 @@ export default function App() {
                     <label className="abilityLabel">{hint.pet.ability}</label>
                   </div>
                 </div>
-              </div>
+              </div>  
             </li>
           )
         })}

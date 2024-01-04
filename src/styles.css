@@ -260,7 +260,7 @@ body {
 
 .abilityLabel {
     padding: 5px;
-    font-size: 15px;
+    font-size: min(2vw, 15px);
 }
 
 .hintPetImage {

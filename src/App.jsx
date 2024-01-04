@@ -22,6 +22,7 @@ const CLOSE_COLOUR = ["#EDB82E", "#CB8F35"]
 const CORRECT_COLOUR = ["#28C223", "#269624"]
 const COLOUR_TO_EMOJI = {"#28C223": '🟩', "#EDB82E": '🟨', "#676767": '⬛'}
 const PACK_IMAGE_HEIGHT = ['90%', '60%', '45%', '35%', '25%']
+const HINT_FONT_SIZE = "min(5vw, 40px)"
 const PACK_ICONS = {
   "Turtle Pack": turtlePackIcon, 
   "Golden Pack": goldenPackIcon, 
@@ -230,7 +231,7 @@ export default function App() {
               </div>
               <div className="infoBox">
                 <div className="infoBoxOuter" style={{backgroundColor: hint.tier[1]}}>
-                  <div className="infoBoxInner" style={{fontSize: 40, backgroundColor: hint.tier[0]}}>
+                  <div className="infoBoxInner" style={{fontSize: HINT_FONT_SIZE, backgroundColor: hint.tier[0]}}>
                     <label>{hint.pet.tier}</label>
                   </div>
                 </div>
@@ -263,14 +264,14 @@ export default function App() {
               </div>
               <div className="infoBox">
                 <div className="infoBoxOuter" style={{backgroundColor: hint.attack[1]}}>
-                  <div className="infoBoxInner" style={{fontSize: 40, backgroundColor: hint.attack[0]}}>
+                  <div className="infoBoxInner" style={{fontSize: HINT_FONT_SIZE, backgroundColor: hint.attack[0]}}>
                     <label>{hint.pet.attack}</label>
                   </div>
                 </div>
               </div>
               <div className="infoBox">
                 <div className="infoBoxOuter" style={{backgroundColor: hint.health[1]}}>
-                  <div className="infoBoxInner" style={{fontSize: 40, backgroundColor: hint.health[0]}}>
+                  <div className="infoBoxInner" style={{fontSize: HINT_FONT_SIZE, backgroundColor: hint.health[0]}}>
                     <label>{hint.pet.health}</label>
                   </div>
                 </div>

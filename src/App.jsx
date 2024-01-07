@@ -40,6 +40,8 @@ export default function App() {
   const [hints, setHints] = useState([])
   const [showSuggestions, setShowSuggestions] = useState(false)
   const [clipboard, setClipboard] = useState('')
+  const [darkenScreen, setDarkenScreen] = useState(false)
+  const [disableInput, setDisableInput] = useState(false)
 
   const inputRef = React.useRef(null)
 
@@ -69,6 +71,11 @@ export default function App() {
       
       if (petIndex == correctPetIndex) {
         hint.pet_colour = CORRECT_COLOUR
+        setDisableInput(true)
+        inputRef.current.blur()
+        setTimeout(() => {
+          setDarkenScreen(true)
+        }, 1000)
       }
       if (hint.pet.tier == correctPet.tier) {
         hint.tier = CORRECT_COLOUR
@@ -112,8 +119,7 @@ export default function App() {
 
   return (
     <>
-      <div className="background"></div>
-      <div className="gameContainer">
+      <div className="gameContainer" style={disableInput ? {pointerEvents: "none"} : {}}>
         <img className="logo" src={logo} alt="Logo"/>
         <form className="guess" onSubmit={handleGuess}>
           <div className="guessAndSuggestionsBox">
@@ -287,6 +293,11 @@ export default function App() {
           )
         })}
       </ul>
+      {darkenScreen ? <div className="endOverlay">
+        <div className="endScreen">
+
+        </div>
+      </div> : null}
       <CopyToClipboard text={"I solved today's Petdle in " + guessedPets.length + " tries." + clipboard}>
         <button>Copy</button>
       </CopyToClipboard>

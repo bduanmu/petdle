@@ -46,17 +46,6 @@ body {
     color: #5D240B;
 }
 
-.endOverlay {
-    background: rgba(0, 0, 0, 0.6);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    animation: fadeIn 1s linear;
-}
-
 .gameContainer {
     display: flex;
     flex-direction: column;
@@ -292,4 +281,141 @@ body {
 .packImage {
     max-height: 90%;
     max-width: 80%;
+}
+
+.endOverlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    animation: fadeIn 1s linear;
+}
+
+.endScreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    overflow: auto;
+    
+    background-color: #f7cc8c;
+    height: 80vh;
+    width: 50vw;
+    max-width: 600px;
+
+    border-style: solid;
+    border-width: 30px;
+    border-image: url(./assets/Wooden_Border2.png);
+    border-image-slice: 35;
+    border-image-repeat: round;
+    border-image-outset: 15px 20px 21px 20px;
+}
+
+.topRow {
+    display: flex;
+    justify-content: space-between;
+}
+
+.messagePanel {
+    width: 60%;
+
+    border-style: solid;
+    border-width: 20px;
+    border-image: url(./assets/sap_wooden_panel_border.png);
+    border-image-slice: 30 fill;
+    border-image-repeat: round;
+
+    color: #5D240B;
+    font-family: sap;
+    font-size: min(60px, 5vw);
+    text-align: center;
+}
+
+.closeEndScreenButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 3vw;
+    height: 3vw;
+    max-width: 36px;
+    max-height: 36px;
+    
+    border-style: none;
+    border-radius: 50%;
+
+    background-color: #D99F71;
+    color: #5D240B;
+    font-family: sap;
+    font-size: min(36px, 3vw);
+}
+
+.guessDisplay {
+    align-self: center;
+
+    border-style: solid;
+    border-width: min(calc(100vw * 130/1200), 130px) min(calc(100vw * 80/1200), 80px) min(calc(100vw * 20/1200), 20px);
+    border-image: url(./assets/sap_replay_ui_border.png);
+    border-image-slice: 130 80 20 fill;
+    border-image-repeat: round;
+}
+
+.guessDisplayLabel {
+    color: #823e00;
+    font-family: sap;
+    font-size: min(calc(100vw * 60/1200), 60px);
+    text-align: center;
+    transform: translateY(min(calc(100vw * 83/1200), 83px));
+}
+
+.guessDisplayPetImage {
+    height: auto;
+    width: 20%;
+}
+
+.copyButton {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    border-style: none;
+    font-family: sap;
+    font-size: 40px;
+    color: #5D240B;
+}
+
+.copyButton:active {
+    transform: scale(90%);
+}
+
+.copyButtonOuter {
+    align-self: center;
+    width: 80%;
+    height: 15%;
+    background-color: #CB5C35;
+    border-style: solid;
+    border-width: 5px;
+    border-color: black;
+    border-radius: 10px;
+}
+
+.copyButtonOuter:hover {
+    filter: brightness(120%);
+    .copyButton {
+        filter: brightness(80%);
+    }
+}
+
+.copyButtonInner {
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ED732E;
+    border-radius: 5px;
 }

@@ -286,7 +286,8 @@ body {
 .endOverlay {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
+    overflow: auto;
     background: rgba(0, 0, 0, 0.6);
     position: fixed;
     top: 0;
@@ -300,21 +301,15 @@ body {
 .endScreen {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-
-    overflow: auto;
     
-    background-color: #f7cc8c;
-    height: 80vh;
-    width: 50vw;
-    max-width: 600px;
+    width: 60vw;
+    max-width: 500px;
 
     border-style: solid;
-    border-width: 30px;
+    border-width: 30px 33px 38px;
     border-image: url(./assets/Wooden_Border2.png);
-    border-image-slice: 35;
+    border-image-slice: 30 33 38 fill;
     border-image-repeat: round;
-    border-image-outset: 15px 20px 21px 20px;
 }
 
 .topRow {
@@ -346,6 +341,7 @@ body {
     height: 3vw;
     max-width: 36px;
     max-height: 36px;
+    min-width: none;
     
     border-style: none;
     border-radius: 50%;
@@ -364,6 +360,8 @@ body {
     border-image: url(./assets/sap_replay_ui_border.png);
     border-image-slice: 130 80 20 fill;
     border-image-repeat: round;
+
+    margin-bottom: 5%;
 }
 
 .guessDisplayLabel {
@@ -396,7 +394,9 @@ body {
 .copyButtonOuter {
     align-self: center;
     width: 80%;
-    height: 15%;
+    height: 15vh;
+    margin-top: auto;
+    margin-bottom: 5%;
     background-color: #CB5C35;
     border-style: solid;
     border-width: 5px;
@@ -412,7 +412,7 @@ body {
 }
 
 .copyButtonInner {
-    height: 90%;
+    height: 85%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -436,7 +436,7 @@ body {
 
 .resultsButtonOuter {
     align-self: center;
-    width: 30vw;
+    width: 300px;
     height: 10vh;
     background-color: #CB5C35;
     border-style: solid;
@@ -453,7 +453,7 @@ body {
 }
 
 .resultsButtonInner {
-    height: 90%;
+    height: 80%;
     display: flex;
     align-items: center;
     justify-content: center;

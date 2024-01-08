@@ -419,3 +419,44 @@ body {
     background-color: #ED732E;
     border-radius: 5px;
 }
+
+.resultsButton {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    border-style: none;
+    font-family: sap;
+    font-size: 40px;
+    color: #5D240B;
+}
+
+.resultsButton:active {
+    transform: scale(90%);
+}
+
+.resultsButtonOuter {
+    align-self: center;
+    width: 30vw;
+    height: 10vh;
+    background-color: #CB5C35;
+    border-style: solid;
+    border-width: 5px;
+    border-color: black;
+    border-radius: 10px;
+}
+
+.resultsButtonOuter:hover {
+    filter: brightness(120%);
+    .copyButton {
+        filter: brightness(80%);
+    }
+}
+
+.resultsButtonInner {
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ED732E;
+    border-radius: 5px;
+}

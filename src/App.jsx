@@ -42,6 +42,7 @@ export default function App() {
   const [clipboard, setClipboard] = useState('')
   const [darkenScreen, setDarkenScreen] = useState(false)
   const [disableInput, setDisableInput] = useState(false)
+  const [showResultButton, setShowResultButton] = useState(false)
   const [endMessage, setEndMessage] = useState("You Won!")
 
   const inputRef = React.useRef(null)
@@ -75,6 +76,7 @@ export default function App() {
         setDisableInput(true)
         inputRef.current.blur()
         setEndMessage("You Won!")
+        setShowResultButton(true)
         setTimeout(() => {
           setDarkenScreen(true)
         }, 1000)
@@ -295,6 +297,18 @@ export default function App() {
           )
         })}
       </ul>
+      {showResultButton ? <div style={{display: "flex", justifyContent: "center"}}>
+        <div className="resultsButtonOuter">
+          <div className="resultsButtonInner">
+            <button 
+              className="resultsButton"
+              onClick={() => {
+                setDarkenScreen(true)
+              }}
+            >Results</button>
+          </div>
+        </div>
+      </div> : null}
       {darkenScreen ? <div className="endOverlay">
         <div className="endScreen">
           <div className="topRow">
@@ -307,7 +321,12 @@ export default function App() {
             <div className="messagePanel">
               {endMessage}
             </div>
-            <button className="closeEndScreenButton" onClick={() => {setDarkenScreen(false)}}>x</button>
+            <button 
+              className="closeEndScreenButton" 
+              onClick={() => {
+                setDarkenScreen(false)
+              }}
+            >x</button>
           </div>
           <div>
             <div className="guessDisplayLabel">Your guesses:</div>
@@ -327,7 +346,7 @@ export default function App() {
           </div>
           <div className="copyButtonOuter">
             <div className="copyButtonInner">
-              <CopyToClipboard text={"I solved today's Petdle in " + guessedPets.length + " tries.\n" + clipboard}>
+              <CopyToClipboard text={"I solved the Petdle in " + guessedPets.length + " tries.\n" + clipboard}>
                 <button className="copyButton">Copy</button>
               </CopyToClipboard>
             </div>

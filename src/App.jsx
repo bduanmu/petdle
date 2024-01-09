@@ -355,7 +355,7 @@ export default function App() {
             </div>
           </div>
         </div>
-        <Confetti width={5000} height={1110+30+38}/>
+        <Confetti width={7500} height={1020+30+38}/>
       </div> : null}
     </>
   )

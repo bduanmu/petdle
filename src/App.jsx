@@ -1,11 +1,13 @@
 import React, { useState, useRef } from "react";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
+import Confetti from "react-confetti";
 
 import "./styles.css"
 
 import logo from "./assets/Petdle_Logo.png"
 import turtleSilhouette from "./assets/Turtle_silhouette.png"
 import enterArrow from "./assets/Enter_Arrow.png"
+import sapWinEmoji from "./assets/sap_win_emoji.png"
 import turtlePackIcon from "./assets/pack_icons/Turtle Pack_Icon.png"
 import goldenPackIcon from "./assets/pack_icons/Golden Pack_Icon.png"
 import puppyPackIcon from "./assets/pack_icons/Puppy Pack_Icon.png"
@@ -328,6 +330,7 @@ export default function App() {
               }}
             >x</button>
           </div>
+          <img className="endScreenEmoji" src={sapWinEmoji} alt="Win Emoji" title="Win Emoji"/>
           <div>
             <div className="guessDisplayLabel">Your guesses:</div>
             <div className="guessDisplay">
@@ -352,6 +355,7 @@ export default function App() {
             </div>
           </div>
         </div>
+        <Confetti width={5000} height={1110+30+38}/>
       </div> : null}
     </>
   )

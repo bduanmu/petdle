@@ -36,6 +36,24 @@
     }
 }
 
+@keyframes emojiIdle {
+    0% {
+        transform: scale(100%) rotate(0deg);
+    }
+    25% {
+        transform: scale(105%) rotate(-5deg);
+    }
+    50% {
+        transform: scale(100%) rotate(0deg);
+    }
+    75% {
+        transform: scale(105%) rotate(5deg);
+    }
+    100% {
+        transform: scale(100%) rotate(0deg);
+    }
+}
+
 body {
     background: url("./assets/repeatable_field_blur.png") repeat-x center center fixed;
     background-size: auto 100%;
@@ -288,6 +306,7 @@ body {
     justify-content: center;
     align-items: start;
     overflow: auto;
+    overflow-x: hidden;
     background: rgba(0, 0, 0, 0.6);
     position: fixed;
     top: 0;
@@ -303,7 +322,8 @@ body {
     flex-direction: column;
     
     width: 60vw;
-    max-width: 500px;
+    max-width: 720px;
+    height: 1110px;
 
     border-style: solid;
     border-width: 30px 33px 38px;
@@ -319,6 +339,8 @@ body {
 
 .messagePanel {
     width: 60%;
+
+    margin-top: 3%;
 
     border-style: solid;
     border-width: 20px;
@@ -336,6 +358,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-bottom: 0.7%;
 
     width: 3vw;
     height: 3vw;
@@ -352,6 +375,15 @@ body {
     font-size: min(36px, 3vw);
 }
 
+.endScreenEmoji {
+    width: 60%;
+
+    align-self: center;
+    margin-top: 5%;
+    
+    animation: emojiIdle 4s linear infinite;
+}
+
 .guessDisplay {
     align-self: center;
 
@@ -361,7 +393,7 @@ body {
     border-image-slice: 130 80 20 fill;
     border-image-repeat: round;
 
-    margin-bottom: 5%;
+    margin: 0% 2% 5%;
 }
 
 .guessDisplayLabel {
@@ -393,8 +425,8 @@ body {
 
 .copyButtonOuter {
     align-self: center;
-    width: 80%;
-    height: 15vh;
+    width: 70%;
+    height: 80px;
     margin-top: auto;
     margin-bottom: 5%;
     background-color: #CB5C35;

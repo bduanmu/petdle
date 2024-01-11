@@ -14,9 +14,21 @@ import puppyPackIcon from "./assets/pack_icons/Puppy Pack_Icon.png"
 import starPackIcon from "./assets/pack_icons/Star Pack_Icon.png"
 import weeklyPackIcon from "./assets/pack_icons/Weekly Pack_Icon.png"
 
-import { pets, petImages, petNames } from "./pets.jsx";
+import { pets, petImages, petNames, answers } from "./pets.jsx";
 
-const correctPetIndex = Math.floor(Math.random() * petNames.length)
+const now = Math.floor(Number(new Date()) / (1000 * 60 * 60 * 24)) - 19733
+if (JSON.parse(localStorage.getItem("day")) !== now) {
+  localStorage.setItem("day", JSON.stringify(now))
+
+  localStorage.setItem("hints", JSON.stringify([]))
+  localStorage.setItem("guessedPets", JSON.stringify([]))
+  localStorage.setItem("clipboard", JSON.stringify(''))
+  localStorage.setItem("darkenScreen", JSON.stringify(false))
+  localStorage.setItem("disableInput", JSON.stringify(false))
+  localStorage.setItem("showResultButton", JSON.stringify(false))
+}
+console.log(now)
+const correctPetIndex = answers[now]
 const correctPet = pets[correctPetIndex]
 
 const WRONG_COLOUR = ["#676767", "#414141"]
@@ -40,27 +52,36 @@ export default function App() {
   const [guessImage, setGuessImage] = useState(turtleSilhouette)
   const [showSuggestions, setShowSuggestions] = useState(false)
 
-  const [guessedPets, setGuessedPets] = useState([])
-  const [hints, setHints] = useState([])
-  //   () => {
-  //   return JSON.parse(localStorage.getItem("hints")) || []
-  // })
-  const [clipboard, setClipboard] = useState('')
-  const [darkenScreen, setDarkenScreen] = useState(false)
-  const [disableInput, setDisableInput] = useState(false)
-  const [showResultButton, setShowResultButton] = useState(false)
+  const [guessedPets, setGuessedPets] = useState(() => {
+    return JSON.parse(localStorage.getItem("guessedPets")) || []
+  })
+  const [hints, setHints] = useState(() => {
+    return JSON.parse(localStorage.getItem("hints")) || []
+  })
+  const [clipboard, setClipboard] = useState(() => {
+    return JSON.parse(localStorage.getItem("clipboard")) || ''
+  })
+  const [darkenScreen, setDarkenScreen] = useState(() => {
+    return JSON.parse(localStorage.getItem("darkenScreen")) || false
+  })
+  const [disableInput, setDisableInput] = useState(() => {
+    return JSON.parse(localStorage.getItem("disableInput")) || false
+  })
+  const [showResultButton, setShowResultButton] = useState(() => {
+    return JSON.parse(localStorage.getItem("showResultButton")) || false
+  })
+
   const [endMessage, setEndMessage] = useState("You Won!")
 
   const inputRef = React.useRef(null)
 
   useEffect(() => {
-    // localStorage.setItem("hints", JSON.stringify(hints))
+    localStorage.setItem("hints", JSON.stringify(hints))
     localStorage.setItem("guessedPets", JSON.stringify(guessedPets))
-    
-    // localStorage.setItem("clipboard", JSON.stringify(clipboard))
-    // localStorage.setItem("darkenScreen", JSON.stringify(darkenScreen))
-    // localStorage.setItem("disableInput", JSON.stringify(disableInput))
-    // localStorage.setItem("endMessage", JSON.stringify(endMessage))
+    localStorage.setItem("clipboard", JSON.stringify(clipboard))
+    localStorage.setItem("darkenScreen", JSON.stringify(darkenScreen))
+    localStorage.setItem("disableInput", JSON.stringify(disableInput))
+    localStorage.setItem("showResultButton", JSON.stringify(showResultButton))
   })
 
   function handleGuess(e) {
@@ -313,6 +334,7 @@ export default function App() {
           )
         })}
       </ul>
+      {/* <Timer/> */}
       {showResultButton ? <div style={{display: "flex", justifyContent: "center"}}>
         <div className="resultsButtonOuter">
           <div className="resultsButtonInner">

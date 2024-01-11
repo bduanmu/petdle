@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import Confetti from "react-confetti";
 
@@ -38,9 +38,13 @@ console.log(petNames[correctPetIndex])
 export default function App() {
   const [newGuess, setNewGuess] = useState('')
   const [guessImage, setGuessImage] = useState(turtleSilhouette)
+  const [showSuggestions, setShowSuggestions] = useState(false)
+
   const [guessedPets, setGuessedPets] = useState([])
   const [hints, setHints] = useState([])
-  const [showSuggestions, setShowSuggestions] = useState(false)
+  //   () => {
+  //   return JSON.parse(localStorage.getItem("hints")) || []
+  // })
   const [clipboard, setClipboard] = useState('')
   const [darkenScreen, setDarkenScreen] = useState(false)
   const [disableInput, setDisableInput] = useState(false)
@@ -48,6 +52,16 @@ export default function App() {
   const [endMessage, setEndMessage] = useState("You Won!")
 
   const inputRef = React.useRef(null)
+
+  useEffect(() => {
+    // localStorage.setItem("hints", JSON.stringify(hints))
+    localStorage.setItem("guessedPets", JSON.stringify(guessedPets))
+    
+    // localStorage.setItem("clipboard", JSON.stringify(clipboard))
+    // localStorage.setItem("darkenScreen", JSON.stringify(darkenScreen))
+    // localStorage.setItem("disableInput", JSON.stringify(disableInput))
+    // localStorage.setItem("endMessage", JSON.stringify(endMessage))
+  })
 
   function handleGuess(e) {
     e.preventDefault()

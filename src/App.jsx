@@ -27,7 +27,7 @@ if (JSON.parse(localStorage.getItem("day")) !== now) {
   localStorage.setItem("disableInput", JSON.stringify(false))
   localStorage.setItem("showResultButton", JSON.stringify(false))
 }
-console.log(now)
+// console.log(now)
 const correctPetIndex = answers[now]
 const correctPet = pets[correctPetIndex]
 
@@ -45,7 +45,7 @@ const PACK_ICONS = {
   "Weekly Pack": weeklyPackIcon
 }
 
-console.log(petNames[correctPetIndex])
+// console.log(petNames[correctPetIndex])
 
 export default function App() {
   const [newGuess, setNewGuess] = useState('')
@@ -114,6 +114,12 @@ export default function App() {
         inputRef.current.blur()
         setEndMessage("You Won!")
         setShowResultButton(true)
+        
+        const numGuessesAll = JSON.parse(localStorage.getItem("numGuessesAll")) || []
+        const newNumGuessesAll = [...numGuessesAll, (guessedPets.length + 1)]
+    
+        localStorage.setItem("numGuessesAll", JSON.stringify(newNumGuessesAll))
+
         setTimeout(() => {
           setDarkenScreen(true)
         }, 1000)

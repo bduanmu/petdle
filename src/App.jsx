@@ -120,6 +120,11 @@ export default function App() {
     
         localStorage.setItem("numGuessesAll", JSON.stringify(newNumGuessesAll))
 
+        localStorage.setItem("avgGuesses", JSON.stringify(newNumGuessesAll.reduce(
+          (accumulator, currentValue) => accumulator + currentValue,
+          0,
+        ) / Math.max(newNumGuessesAll.length, 1)));
+
         setTimeout(() => {
           setDarkenScreen(true)
         }, 1000)
@@ -375,7 +380,7 @@ export default function App() {
           </div>
           <img className="endScreenEmoji" src={sapWinEmoji} alt="Win Emoji" title="Win Emoji"/>
           <div>
-            <div className="guessDisplayLabel">Your guesses:</div>
+            <div className="guessDisplayLabel">Your Guesses:</div>
             <div className="guessDisplay">
               {hints.map((hint, index) => {
                 return (
@@ -392,12 +397,12 @@ export default function App() {
           </div>
           <div style={{display: "flex", justifyContent: "center", marginTop: "22px"}}>
             <h1 className="statDisplay">Average:</h1>
-            <h1 className="statDisplay">Games Played:</h1>
+            <h1 className="statDisplay">Wins:</h1>
             {/* <h1 className="statDisplay">Streak:</h1> */}
           </div>
           <div style={{display: "flex", justifyContent: "center", marginBottom: "22px"}}>
-            <h1 className="statDisplay">a</h1>
-            <h1 className="statDisplay">a</h1>
+            <h1 className="statDisplay">{Math.round(localStorage.getItem("avgGuesses") * 10) / 10}</h1>
+            <h1 className="statDisplay">{JSON.parse(localStorage.getItem("numGuessesAll")).length}</h1>
             {/* <h1 className="statDisplay">Streak:</h1> */}
           </div>
           <div className="copyButtonOuter">
@@ -408,7 +413,7 @@ export default function App() {
             </div>
           </div>
         </div>
-        <Confetti width={7500} height={1020+30+38}/>
+        <Confetti width={7500} height={1098+30+38}/>
       </div> : null}
     </>
   )

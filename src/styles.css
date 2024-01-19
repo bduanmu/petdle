@@ -384,6 +384,17 @@ body {
     animation: emojiIdle 4s linear infinite;
 }
 
+.statDisplay {
+    width: 30%;
+
+    margin: 0px;
+
+    color: #5D240B;
+    font-family: sap;
+    font-size: min(36px, 3vw);
+    text-align: center;
+}
+
 .guessDisplay {
     align-self: center;
 
@@ -393,7 +404,7 @@ body {
     border-image-slice: 130 80 20 fill;
     border-image-repeat: round;
 
-    margin: 0% 2% 5%;
+    margin: 0% 2%;
 }
 
 .guessDisplayLabel {

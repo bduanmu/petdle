@@ -153,6 +153,7 @@ export default function App() {
       })
       setClipboard(
         clipboard + '\n' + 
+        COLOUR_TO_EMOJI[hint.pet_colour[0]] + 
         COLOUR_TO_EMOJI[hint.tier[0]] + 
         COLOUR_TO_EMOJI[hint.pack[0]] + 
         COLOUR_TO_EMOJI[hint.attack[0]] + 
@@ -389,9 +390,19 @@ export default function App() {
               })}
             </div>
           </div>
+          <div style={{display: "flex", justifyContent: "center", marginTop: "22px"}}>
+            <h1 className="statDisplay">Average:</h1>
+            <h1 className="statDisplay">Games Played:</h1>
+            {/* <h1 className="statDisplay">Streak:</h1> */}
+          </div>
+          <div style={{display: "flex", justifyContent: "center", marginBottom: "22px"}}>
+            <h1 className="statDisplay">a</h1>
+            <h1 className="statDisplay">a</h1>
+            {/* <h1 className="statDisplay">Streak:</h1> */}
+          </div>
           <div className="copyButtonOuter">
             <div className="copyButtonInner">
-              <CopyToClipboard text={"I solved the Petdle in " + guessedPets.length + " tries.\n" + clipboard}>
+              <CopyToClipboard text={"I solved the Petdle #" + now + " in " + guessedPets.length + " tries.\n" + clipboard}>
                 <button className="copyButton">Copy</button>
               </CopyToClipboard>
             </div>

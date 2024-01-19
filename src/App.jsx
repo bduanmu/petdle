@@ -117,13 +117,15 @@ export default function App() {
         
         const numGuessesAll = JSON.parse(localStorage.getItem("numGuessesAll")) || []
         const newNumGuessesAll = [...numGuessesAll, (guessedPets.length + 1)]
-    
         localStorage.setItem("numGuessesAll", JSON.stringify(newNumGuessesAll))
-
         localStorage.setItem("avgGuesses", JSON.stringify(newNumGuessesAll.reduce(
           (accumulator, currentValue) => accumulator + currentValue,
           0,
         ) / Math.max(newNumGuessesAll.length, 1)));
+
+        const streak = JSON.parse(localStorage.getItem("streak")) || []
+        const newStreak = streak != [] && streak[streak.length - 1] + 1 == now ? [...streak, (now)] : [now]
+        localStorage.setItem("streak", JSON.stringify(newStreak))
 
         setTimeout(() => {
           setDarkenScreen(true)
@@ -398,12 +400,12 @@ export default function App() {
           <div style={{display: "flex", justifyContent: "center", marginTop: "22px"}}>
             <h1 className="statDisplay">Average:</h1>
             <h1 className="statDisplay">Wins:</h1>
-            {/* <h1 className="statDisplay">Streak:</h1> */}
+            <h1 className="statDisplay">Streak:</h1>
           </div>
           <div style={{display: "flex", justifyContent: "center", marginBottom: "22px"}}>
             <h1 className="statDisplay">{Math.round(localStorage.getItem("avgGuesses") * 10) / 10}</h1>
             <h1 className="statDisplay">{JSON.parse(localStorage.getItem("numGuessesAll")).length}</h1>
-            {/* <h1 className="statDisplay">Streak:</h1> */}
+            <h1 className="statDisplay">{JSON.parse(localStorage.getItem("streak")).length}</h1>
           </div>
           <div className="copyButtonOuter">
             <div className="copyButtonInner">

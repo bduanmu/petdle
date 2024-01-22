@@ -377,6 +377,7 @@ body {
 
 .endScreenEmoji {
     width: 50%;
+    height: auto;
 
     align-self: center;
     margin-top: 5%;

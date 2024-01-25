@@ -87,6 +87,29 @@ body {
     --guess-width: calc(max(34vw, 300px));
 }
 
+.infoButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 3px;
+
+    margin-left: auto;
+
+    width: 40px;
+    height: 40px;
+    min-width: none;
+    
+    border-style: solid;
+    border-radius: 50%;
+    border-color: #5D240B;
+    border-width: 4px;
+
+    background-color: #D99F71;
+    color: #5D240B;
+    font-family: sap;
+    font-size: 30px;
+}
+
 .guessAndSuggestionsBox {
     display: flex;
     flex-direction: column;

@@ -51,6 +51,7 @@ export default function App() {
   const [newGuess, setNewGuess] = useState('')
   const [guessImage, setGuessImage] = useState(turtleSilhouette)
   const [showSuggestions, setShowSuggestions] = useState(false)
+  const [showInfo, setShowInfo] = useState(false)
 
   const [guessedPets, setGuessedPets] = useState(() => {
     return JSON.parse(localStorage.getItem("guessedPets")) || []
@@ -174,6 +175,15 @@ export default function App() {
 
   return (
     <>
+      <button
+       className="infoButton"
+       style={disableInput ? {pointerEvents: "none"} : {}}
+       onClick={() => {
+        setShowInfo(true)
+       }}
+      >
+        ?
+      </button>
       <div className="gameContainer" style={disableInput ? {pointerEvents: "none"} : {}}>
         <img className="logo" src={logo} alt="Logo"/>
         <form className="guess" onSubmit={handleGuess}>
@@ -417,6 +427,9 @@ export default function App() {
         </div>
         <Confetti width={7500} height={1098+30+38}/>
       </div> : null}
+      {showInfo ? <div className="endOverlay">
+
+      </div>: null}
     </>
   )
 }

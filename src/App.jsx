@@ -31,6 +31,7 @@ if (JSON.parse(localStorage.getItem("day")) !== now) {
 const correctPetIndex = answers[now]
 const correctPet = pets[correctPetIndex]
 
+const EXAMPLE_PET_INDEX = 131
 const WRONG_COLOUR = ["#676767", "#414141"]
 const CLOSE_COLOUR = ["#EDB82E", "#CB8F35"]
 const CORRECT_COLOUR = ["#28C223", "#269624"]
@@ -428,7 +429,93 @@ export default function App() {
         <Confetti width={7500} height={1098+30+38}/>
       </div> : null}
       {showInfo ? <div className="endOverlay">
-
+        <div className="endScreen">
+          <div className="topRow">
+            <div style={{
+              width: "3vw",
+              height: "3vw",
+              maxWidth: "36px",
+              maxHeight: "36px"
+            }}/>
+            <div className="messagePanel">
+              How to Play
+            </div>
+            <button 
+              className="closeEndScreenButton" 
+              onClick={() => {
+                setShowInfo(false)
+              }}
+            >x</button>
+          </div>
+          <li key={0} className="guessListObject" style={{scale: "70%", rotate: "180deg"}}>
+              <div className="infoBox">
+                <div className="infoBoxOuter" style={{backgroundColor: WRONG_COLOUR[1]}}>
+                  <div className="infoBoxInner" style={{fontSize: 20, backgroundColor: WRONG_COLOUR[0]}}>
+                    <img
+                      className="hintPetImage" 
+                      src={petImages[EXAMPLE_PET_INDEX]}
+                      alt={pets[EXAMPLE_PET_INDEX].name}
+                      title={pets[EXAMPLE_PET_INDEX].name}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="infoBox">
+                <div className="infoBoxOuter" style={{backgroundColor: CORRECT_COLOUR[1]}}>
+                  <div className="infoBoxInner" style={{fontSize: HINT_FONT_SIZE, backgroundColor: CORRECT_COLOUR[0]}}>
+                    <label>{pets[EXAMPLE_PET_INDEX].tier}</label>
+                  </div>
+                </div>
+              </div>
+              <div className="infoBox">
+                <div className="infoBoxOuter" style={{backgroundColor: CLOSE_COLOUR[1]}}>
+                  <div 
+                    className="infoBoxInner" 
+                    style={{
+                      fontSize: 20, 
+                      backgroundColor: CLOSE_COLOUR[0],
+                    }}
+                  >
+                    {pets[EXAMPLE_PET_INDEX].pack.map(pack => {
+                      return (
+                        <img
+                          key={pack}
+                          className="packImage" 
+                          src={PACK_ICONS[pack]}
+                          alt={pack} 
+                          title={pack}
+                          style={{
+                            height: PACK_IMAGE_HEIGHT[pets[EXAMPLE_PET_INDEX].pack.length - 1]
+                          }}
+                        />
+                      )
+                    })}
+                  </div>
+                </div>
+              </div>
+              <div className="infoBox">
+                <div className="infoBoxOuter" style={{backgroundColor: WRONG_COLOUR[1]}}>
+                  <div className="infoBoxInner" style={{fontSize: HINT_FONT_SIZE, backgroundColor: WRONG_COLOUR[0]}}>
+                    <label>{pets[EXAMPLE_PET_INDEX].attack}</label>
+                  </div>
+                </div>
+              </div>
+              <div className="infoBox">
+                <div className="infoBoxOuter" style={{backgroundColor: CLOSE_COLOUR[1]}}>
+                  <div className="infoBoxInner" style={{fontSize: HINT_FONT_SIZE, backgroundColor: CLOSE_COLOUR[0]}}>
+                    <label>{pets[EXAMPLE_PET_INDEX].health}</label>
+                  </div>
+                </div>
+              </div>
+              <div className="infoBox">
+                <div className="infoBoxOuter" style={{backgroundColor: CORRECT_COLOUR[1]}}>
+                  <div className="infoBoxInner" style={{backgroundColor: CORRECT_COLOUR[0]}}>
+                    <label className="abilityLabel">{pets[EXAMPLE_PET_INDEX].ability}</label>
+                  </div>
+                </div>
+              </div>  
+            </li>
+        </div>
       </div>: null}
     </>
   )

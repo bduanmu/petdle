@@ -447,74 +447,96 @@ export default function App() {
               }}
             >x</button>
           </div>
-          <li key={0} className="guessListObject" style={{scale: "70%", rotate: "180deg"}}>
-              <div className="infoBox">
-                <div className="infoBoxOuter" style={{backgroundColor: WRONG_COLOUR[1]}}>
-                  <div className="infoBoxInner" style={{fontSize: 20, backgroundColor: WRONG_COLOUR[0]}}>
-                    <img
-                      className="hintPetImage" 
-                      src={petImages[EXAMPLE_PET_INDEX]}
-                      alt={pets[EXAMPLE_PET_INDEX].name}
-                      title={pets[EXAMPLE_PET_INDEX].name}
-                    />
-                  </div>
+          <p className="instructions">
+            The goal of this game is to find the hidden pet. To do this, you guess other pets which 
+            will reveal information about the hidden pet. Use those clues to figure out the pet of the day!
+          </p>
+          <p className="instructions">
+            🟩: The clue is correct. 
+          </p>
+          <p className="instructions">
+            🟨: The clue is close. For numerical clues, this means the clue is 1 off. For non-numerical
+            clues, this means for that property there is some overlap between the two pets.
+          </p>
+          <p className="instructions">
+            ⬛: The clue is wrong. Either the number is too far off or there is zero overlap. 
+          </p>
+          <p className="instructions">
+            Example:  
+          </p>
+          <li key={0} className="guessListObject" style={{scale: "70%", rotate: "180deg", marginTop: 0}}>
+            <div className="infoBox">
+              <div className="infoBoxOuter" style={{backgroundColor: WRONG_COLOUR[1]}}>
+                <div className="infoBoxInner" style={{fontSize: 20, backgroundColor: WRONG_COLOUR[0]}}>
+                  <img
+                    className="hintPetImage" 
+                    src={petImages[EXAMPLE_PET_INDEX]}
+                    alt={pets[EXAMPLE_PET_INDEX].name}
+                    title={pets[EXAMPLE_PET_INDEX].name}
+                  />
                 </div>
               </div>
-              <div className="infoBox">
-                <div className="infoBoxOuter" style={{backgroundColor: CORRECT_COLOUR[1]}}>
-                  <div className="infoBoxInner" style={{fontSize: HINT_FONT_SIZE, backgroundColor: CORRECT_COLOUR[0]}}>
-                    <label>{pets[EXAMPLE_PET_INDEX].tier}</label>
-                  </div>
+            </div>
+            <div className="infoBox">
+              <div className="infoBoxOuter" style={{backgroundColor: CORRECT_COLOUR[1]}}>
+                <div className="infoBoxInner" style={{fontSize: HINT_FONT_SIZE, backgroundColor: CORRECT_COLOUR[0]}}>
+                  <label>{pets[EXAMPLE_PET_INDEX].tier}</label>
                 </div>
               </div>
-              <div className="infoBox">
-                <div className="infoBoxOuter" style={{backgroundColor: CLOSE_COLOUR[1]}}>
-                  <div 
-                    className="infoBoxInner" 
-                    style={{
-                      fontSize: 20, 
-                      backgroundColor: CLOSE_COLOUR[0],
-                    }}
-                  >
-                    {pets[EXAMPLE_PET_INDEX].pack.map(pack => {
-                      return (
-                        <img
-                          key={pack}
-                          className="packImage" 
-                          src={PACK_ICONS[pack]}
-                          alt={pack} 
-                          title={pack}
-                          style={{
-                            height: PACK_IMAGE_HEIGHT[pets[EXAMPLE_PET_INDEX].pack.length - 1]
-                          }}
-                        />
-                      )
-                    })}
-                  </div>
+            </div>
+            <div className="infoBox">
+              <div className="infoBoxOuter" style={{backgroundColor: CLOSE_COLOUR[1]}}>
+                <div 
+                  className="infoBoxInner" 
+                  style={{
+                    fontSize: 20, 
+                    backgroundColor: CLOSE_COLOUR[0],
+                  }}
+                >
+                  {pets[EXAMPLE_PET_INDEX].pack.map(pack => {
+                    return (
+                      <img
+                        key={pack}
+                        className="packImage" 
+                        src={PACK_ICONS[pack]}
+                        alt={pack} 
+                        title={pack}
+                        style={{
+                          height: PACK_IMAGE_HEIGHT[pets[EXAMPLE_PET_INDEX].pack.length - 1]
+                        }}
+                      />
+                    )
+                  })}
                 </div>
               </div>
-              <div className="infoBox">
-                <div className="infoBoxOuter" style={{backgroundColor: WRONG_COLOUR[1]}}>
-                  <div className="infoBoxInner" style={{fontSize: HINT_FONT_SIZE, backgroundColor: WRONG_COLOUR[0]}}>
-                    <label>{pets[EXAMPLE_PET_INDEX].attack}</label>
-                  </div>
+            </div>
+            <div className="infoBox">
+              <div className="infoBoxOuter" style={{backgroundColor: WRONG_COLOUR[1]}}>
+                <div className="infoBoxInner" style={{fontSize: HINT_FONT_SIZE, backgroundColor: WRONG_COLOUR[0]}}>
+                  <label>{pets[EXAMPLE_PET_INDEX].attack}</label>
                 </div>
               </div>
-              <div className="infoBox">
-                <div className="infoBoxOuter" style={{backgroundColor: CLOSE_COLOUR[1]}}>
-                  <div className="infoBoxInner" style={{fontSize: HINT_FONT_SIZE, backgroundColor: CLOSE_COLOUR[0]}}>
-                    <label>{pets[EXAMPLE_PET_INDEX].health}</label>
-                  </div>
+            </div>
+            <div className="infoBox">
+              <div className="infoBoxOuter" style={{backgroundColor: CLOSE_COLOUR[1]}}>
+                <div className="infoBoxInner" style={{fontSize: HINT_FONT_SIZE, backgroundColor: CLOSE_COLOUR[0]}}>
+                  <label>{pets[EXAMPLE_PET_INDEX].health}</label>
                 </div>
               </div>
-              <div className="infoBox">
-                <div className="infoBoxOuter" style={{backgroundColor: CORRECT_COLOUR[1]}}>
-                  <div className="infoBoxInner" style={{backgroundColor: CORRECT_COLOUR[0]}}>
-                    <label className="abilityLabel">{pets[EXAMPLE_PET_INDEX].ability}</label>
-                  </div>
+            </div>
+            <div className="infoBox">
+              <div className="infoBoxOuter" style={{backgroundColor: CORRECT_COLOUR[1]}}>
+                <div className="infoBoxInner" style={{backgroundColor: CORRECT_COLOUR[0]}}>
+                  <label className="abilityLabel">{pets[EXAMPLE_PET_INDEX].ability}</label>
                 </div>
-              </div>  
-            </li>
+              </div>
+            </div>  
+          </li>
+          <p className="instructions" style={{marginTop: 5, marginBottom: 20}}>
+            The properties are, from left to right, pet, tier, pack, attack, health, ability. 
+            Here, the hidden pet is tier 4, is in Turtle and other packs, it's attack is either less 
+            than 1 or more than 3, the health is either 4 or 6, and it has a Faint ability. 
+          </p>
         </div>
       </div>: null}
     </>

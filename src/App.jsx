@@ -534,7 +534,7 @@ export default function App() {
           </li>
           <p className="instructions" style={{marginTop: 5, marginBottom: 20}}>
             The properties are, from left to right, pet, tier, pack, attack, health, ability. 
-            Here, the hidden pet is tier 4, is in Turtle and other packs, it's attack is either less 
+            By guessing Turtle, we know the hidden pet is tier 4, in Turtle and other packs, it's attack is either less 
             than 1 or more than 3, the health is either 4 or 6, and it has a Faint ability. 
           </p>
         </div>

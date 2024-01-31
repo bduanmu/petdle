@@ -426,7 +426,7 @@ export default function App() {
             </div>
           </div>
         </div>
-        <Confetti width={7500} height={1098+30+38}/>
+        <Confetti width={7500} height={window.innerHeight} style={{position: "fixed"}}/>
       </div> : null}
       {showInfo ? <div className="endOverlay">
         <div className="endScreen">

@@ -53,6 +53,7 @@ export default function App() {
   const [guessImage, setGuessImage] = useState(turtleSilhouette)
   const [showSuggestions, setShowSuggestions] = useState(false)
   const [showInfo, setShowInfo] = useState(false)
+  const [disableInfoButton, setDisableInfoButton] = useState(false)
 
   const [guessedPets, setGuessedPets] = useState(() => {
     return JSON.parse(localStorage.getItem("guessedPets")) || []
@@ -113,6 +114,7 @@ export default function App() {
       if (petIndex == correctPetIndex) {
         hint.pet_colour = CORRECT_COLOUR
         setDisableInput(true)
+        setDisableInfoButton(true)
         inputRef.current.blur()
         setEndMessage("You Won!")
         setShowResultButton(true)
@@ -131,6 +133,7 @@ export default function App() {
 
         setTimeout(() => {
           setDarkenScreen(true)
+          setDisableInfoButton(false)
         }, 1000)
       }
       if (hint.pet.tier == correctPet.tier) {
@@ -178,7 +181,7 @@ export default function App() {
     <>
       <button
        className="infoButton"
-       style={disableInput ? {pointerEvents: "none"} : {}}
+       style={disableInfoButton ? {pointerEvents: "none"} : {}}
        onClick={() => {
         setShowInfo(true)
        }}

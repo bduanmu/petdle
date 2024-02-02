@@ -179,15 +179,17 @@ export default function App() {
 
   return (
     <>
-      <button
-       className="infoButton"
-       style={disableInfoButton ? {pointerEvents: "none"} : {}}
-       onClick={() => {
-        setShowInfo(true)
-       }}
-      >
-        ?
-      </button>
+      <div style={{width: 40, height: 40, marginLeft: "auto"}}>
+        <button
+        className="infoButton"
+        style={disableInfoButton ? {pointerEvents: "none"} : {}}
+        onClick={() => {
+          setShowInfo(true)
+        }}
+        >
+          ?
+        </button>
+      </div>
       <div className="gameContainer" style={disableInput ? {pointerEvents: "none"} : {}}>
         <img className="logo" src={logo} alt="Logo"/>
         <form className="guess" onSubmit={handleGuess}>

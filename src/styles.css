@@ -379,7 +379,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-bottom: 0.7%;
+    padding: 0 0 0.6% 0;
 
     width: 3vw;
     height: 3vw;
@@ -399,6 +399,8 @@ body {
 .endScreenEmoji {
     max-width: 50%;
     height: auto;
+
+    padding: 0;
 
     align-self: center;
     margin-top: 5%;

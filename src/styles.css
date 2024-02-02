@@ -400,8 +400,6 @@ body {
     width: min(30vw, 360px);
     height: calc(min(30vw, 360px) * 376/360);
 
-    padding: 0;
-
     align-self: center;
     margin-top: 5%;
     

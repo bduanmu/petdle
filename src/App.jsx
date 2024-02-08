@@ -16,10 +16,9 @@ import weeklyPackIcon from "./assets/pack_icons/Weekly Pack_Icon.png"
 
 import { pets, petImages, petNames, answers } from "./pets.jsx";
 
-const now = Math.floor(Number(new Date()) / (1000 * 60 * 60 * 24)) - 19733
+const now = Math.floor(Number(new Date()) / (1000 * 60 * 60 * 24)) - 19733 // 19733 is Jan. 11th, 2024
 if (JSON.parse(localStorage.getItem("day")) !== now) {
   localStorage.setItem("day", JSON.stringify(now))
-
   localStorage.setItem("hints", JSON.stringify([]))
   localStorage.setItem("guessedPets", JSON.stringify([]))
   localStorage.setItem("clipboard", JSON.stringify(''))
@@ -52,9 +51,11 @@ export default function App() {
   const [newGuess, setNewGuess] = useState('')
   const [guessImage, setGuessImage] = useState(turtleSilhouette)
   const [showSuggestions, setShowSuggestions] = useState(false)
-  const [showInfo, setShowInfo] = useState(false)
   const [disableInfoButton, setDisableInfoButton] = useState(false)
 
+  const [showInfo, setShowInfo] = useState(() => {
+    return JSON.parse(localStorage.getItem("visited")) === null ? true : false
+  })
   const [guessedPets, setGuessedPets] = useState(() => {
     return JSON.parse(localStorage.getItem("guessedPets")) || []
   })
@@ -448,6 +449,7 @@ export default function App() {
             <button 
               className="closeEndScreenButton" 
               onClick={() => {
+                localStorage.setItem("visited", JSON.stringify(true))
                 setShowInfo(false)
               }}
             >x</button>

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import Confetti from "react-confetti";
+import Countdown from "react-countdown"
 
 import "./styles.css"
 
@@ -16,7 +17,11 @@ import weeklyPackIcon from "./assets/pack_icons/Weekly Pack_Icon.png"
 
 import { pets, petImages, petNames, answers } from "./pets.jsx";
 
-const now = Math.floor(Number(new Date()) / (1000 * 60 * 60 * 24)) - 19733 // 19733 is Jan. 11th, 2024
+const date = new Date();
+const timezoneOffset = date.getTimezoneOffset();
+const estOffset = -300; // this is the offset for the Eastern Standard Time timezone
+const adjustedTime = new Date(date.getTime() + (estOffset + timezoneOffset) * 60 * 1000);
+const now = Math.floor(Number(adjustedTime) / (1000 * 60 * 60 * 24)) - 19733 // 19733 is Jan. 11th, 2024
 if (JSON.parse(localStorage.getItem("day")) !== now) {
   localStorage.setItem("day", JSON.stringify(now))
   localStorage.setItem("hints", JSON.stringify([]))
@@ -26,7 +31,11 @@ if (JSON.parse(localStorage.getItem("day")) !== now) {
   localStorage.setItem("disableInput", JSON.stringify(false))
   localStorage.setItem("showResultButton", JSON.stringify(false))
 }
-// console.log(now)
+const tomorrow = new Date(adjustedTime)
+tomorrow.setDate(tomorrow.getDate() + 1)
+tomorrow.setHours(0, 0, 0, 0)
+// console.log(tomorrow)
+
 const correctPetIndex = answers[now]
 const correctPet = pets[correctPetIndex]
 
@@ -423,6 +432,16 @@ export default function App() {
             <h1 className="statDisplay">{Math.round(localStorage.getItem("avgGuesses") * 10) / 10}</h1>
             <h1 className="statDisplay">{JSON.parse(localStorage.getItem("numGuessesAll")).length}</h1>
             <h1 className="statDisplay">{JSON.parse(localStorage.getItem("streak")).length}</h1>
+          </div>
+          <div style={{display: "flex", justifyContent: "center"}}>
+            <h1 className="statDisplay">New puzzle in:</h1>
+          </div>
+          <div style={{display: "flex", justifyContent: "center", marginBottom: "22px"}}>
+            <Countdown 
+              className="countdownTimer"
+              daysInHours={true}
+              date={new Date(tomorrow - (estOffset + timezoneOffset) * 60 * 1000)}
+            />
           </div>
           <div className="copyButtonOuter">
             <div className="copyButtonInner">

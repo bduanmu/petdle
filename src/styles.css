@@ -417,6 +417,22 @@ body {
     text-align: center;
 }
 
+.countdownTimer {
+    background-color: white;
+    border-radius: 10px;
+    border-color: black;
+    border-width: 5px;
+    border-style: solid;
+    padding: 0px 5px 0px 10px;
+    width: 35%;
+
+    color: black;
+    font-family: sap;
+    font-size: min(48px, 4vw);
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+
 .guessDisplay {
     align-self: center;
 

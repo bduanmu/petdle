@@ -18,10 +18,9 @@ import weeklyPackIcon from "./assets/pack_icons/Weekly Pack_Icon.png"
 import { pets, petImages, petNames, answers } from "./pets.jsx";
 
 const date = new Date();
-const timezoneOffset = date.getTimezoneOffset();
-const estOffset = -300; // this is the offset for the Eastern Standard Time timezone
-const adjustedTime = new Date(date.getTime() + (estOffset + timezoneOffset) * 60 * 1000);
-const now = Math.floor(Number(adjustedTime) / (1000 * 60 * 60 * 24)) - 19733 // 19733 is Jan. 11th, 2024
+const now = Math.floor(Number(Date.now()) / (1000 * 60 * 60 * 24)) - 19733 // 19733 is Jan. 11th, 2024
+// console.log(new Date().getTime())
+// console.log(now)
 if (JSON.parse(localStorage.getItem("day")) !== now) {
   localStorage.setItem("day", JSON.stringify(now))
   localStorage.setItem("hints", JSON.stringify([]))
@@ -31,10 +30,9 @@ if (JSON.parse(localStorage.getItem("day")) !== now) {
   localStorage.setItem("disableInput", JSON.stringify(false))
   localStorage.setItem("showResultButton", JSON.stringify(false))
 }
-const tomorrow = new Date(adjustedTime)
-tomorrow.setDate(tomorrow.getDate() + 1)
-tomorrow.setHours(0, 0, 0, 0)
-// console.log(tomorrow)
+const tomorrow = new Date()
+tomorrow.setTime((now + 1 + 19733) * (1000 * 60 * 60 * 24))
+// console.log(Number(tomorrow))
 
 const correctPetIndex = answers[now]
 const correctPet = pets[correctPetIndex]
@@ -440,7 +438,7 @@ export default function App() {
             <Countdown 
               className="countdownTimer"
               daysInHours={true}
-              date={new Date(tomorrow - (estOffset + timezoneOffset) * 60 * 1000)}
+              date={tomorrow}
             />
           </div>
           <div className="copyButtonOuter">

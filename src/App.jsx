@@ -14,6 +14,7 @@ import goldenPackIcon from "./assets/pack_icons/Golden Pack_Icon.png"
 import puppyPackIcon from "./assets/pack_icons/Puppy Pack_Icon.png"
 import starPackIcon from "./assets/pack_icons/Star Pack_Icon.png"
 import weeklyPackIcon from "./assets/pack_icons/Weekly Pack_Icon.png"
+import unicornPackIcon from "./assets/pack_icons/Unicorn Pack_Icon.png"
 
 import { pets, petImages, petNames, answers } from "./pets.jsx";
 
@@ -49,10 +50,11 @@ const PACK_ICONS = {
   "Golden Pack": goldenPackIcon, 
   "Puppy Pack": puppyPackIcon,
   "Star Pack": starPackIcon,
-  "Weekly Pack": weeklyPackIcon
+  "Weekly Pack": weeklyPackIcon,
+  "Unicorn Pack": unicornPackIcon
 }
 
-// console.log(petNames[correctPetIndex])
+// console.log(petNames.indexOf("sloth"))
 
 export default function App() {
   const [newGuess, setNewGuess] = useState('')

@@ -38,7 +38,7 @@ tomorrow.setTime((now + 1 + 19733) * (1000 * 60 * 60 * 24))
 const correctPetIndex = answers[now]
 const correctPet = pets[correctPetIndex]
 
-const EXAMPLE_PET_INDEX = 131
+const EXAMPLE_PET_INDEX = petNames.indexOf("turtle")
 const WRONG_COLOUR = ["#676767", "#414141"]
 const CLOSE_COLOUR = ["#EDB82E", "#CB8F35"]
 const CORRECT_COLOUR = ["#28C223", "#269624"]

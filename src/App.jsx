@@ -166,7 +166,7 @@ export default function App() {
       } else if (Math.abs(hint.pet.health - correctPet.health) == 1) {
         hint.health = CLOSE_COLOUR
       }
-      if (hint.pet.ability == correctPet.ability) {
+      if (hint.pet.ability.toLowerCase() == correctPet.ability.toLowerCase()) {
         hint.ability = CORRECT_COLOUR
       }
 

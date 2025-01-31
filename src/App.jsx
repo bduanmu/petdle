@@ -19,9 +19,9 @@ import unicornPackIcon from "./assets/pack_icons/Unicorn Pack_Icon.png"
 import { pets, petImages, petNames, answers } from "./pets.jsx";
 
 const date = new Date();
-const now = Math.floor(Number(Date.now()) / (1000 * 60 * 60 * 24)) - 19733 // 19733 is Jan. 11th, 2024
-// console.log(new Date().getTime())
-// console.log(now)
+const now = Math.floor(Number(Date.now()) / (1000 * 60 * 60 * 24)) - 20119 // 20119 is Jan. 30th 2025
+// console.log(Math.floor(Number(Date.now()) / (1000 * 60 * 60 * 24)))
+// console.log(answers[now])
 if (JSON.parse(localStorage.getItem("day")) !== now) {
   localStorage.setItem("day", JSON.stringify(now))
   localStorage.setItem("hints", JSON.stringify([]))
@@ -32,7 +32,7 @@ if (JSON.parse(localStorage.getItem("day")) !== now) {
   localStorage.setItem("showResultButton", JSON.stringify(false))
 }
 const tomorrow = new Date()
-tomorrow.setTime((now + 1 + 19733) * (1000 * 60 * 60 * 24))
+tomorrow.setTime((now + 1 + 20119) * (1000 * 60 * 60 * 24))
 // console.log(Number(tomorrow))
 
 const correctPetIndex = answers[now]
